@@ -1,0 +1,200 @@
+{
+  "시트1": {
+    "about": {
+      "meaning": "~에 대하여",
+      "chapter": 1
+    },
+    "across": {
+      "meaning": "가로지르는",
+      "chapter": 1
+    },
+    "act": {
+      "meaning": "행동하다",
+      "chapter": 1
+    },
+    "address": {
+      "meaning": "주소",
+      "chapter": 1
+    },
+    "afraid": {
+      "meaning": "두려워하는",
+      "chapter": 1
+    },
+    "after": {
+      "meaning": "~후에",
+      "chapter": 1
+    },
+    "afternoon": {
+      "meaning": "오후",
+      "chapter": 1
+    },
+    "again": {
+      "meaning": "다시",
+      "chapter": 1
+    },
+    "age": {
+      "meaning": "나이",
+      "chapter": 1
+    },
+    "ago": {
+      "meaning": "이전에",
+      "chapter": 2
+    },
+    "air": {
+      "meaning": "공기",
+      "chapter": 2
+    },
+    "airport": {
+      "meaning": "공항",
+      "chapter": 2
+    },
+    "album": {
+      "meaning": "앨범",
+      "chapter": 2
+    },
+    "all": {
+      "meaning": "모든, 모두",
+      "chapter": 2
+    },
+    "along": {
+      "meaning": "~을 따라서",
+      "chapter": 2
+    },
+    "always": {
+      "meaning": "항상",
+      "chapter": 2
+    },
+    "among": {
+      "meaning": "~사이에",
+      "chapter": 2
+    },
+    "and": {
+      "meaning": "그리고",
+      "chapter": 2
+    },
+    "angry": {
+      "meaning": "화난",
+      "chapter": 2
+    },
+    "animal": {
+      "meaning": "동물",
+      "chapter": 3
+    },
+    "answer": {
+      "meaning": "대답",
+      "chapter": 3
+    },
+    "any": {
+      "meaning": "어떤, 아무런",
+      "chapter": 3
+    },
+    "apartment": {
+      "meaning": "아파트",
+      "chapter": 3
+    },
+    "apple": {
+      "meaning": "사과",
+      "chapter": 3
+    },
+    "arm": {
+      "meaning": "팔",
+      "chapter": 3
+    },
+    "around": {
+      "meaning": "~주위에",
+      "chapter": 3
+    },
+    "arrive": {
+      "meaning": "도착하다",
+      "chapter": 3
+    },
+    "as": {
+      "meaning": "~로서",
+      "chapter": 3
+    },
+    "ask": {
+      "meaning": "묻다",
+      "chapter": 3
+    },
+    "at": {
+      "meaning": "~에",
+      "chapter": 4
+    },
+    "aunt": {
+      "meaning": "이모, 아주머니",
+      "chapter": 4
+    },
+    "autumn": {
+      "meaning": "가을",
+      "chapter": 4
+    },
+    "away": {
+      "meaning": "떨어져",
+      "chapter": 4
+    },
+    "baby": {
+      "meaning": "아기",
+      "chapter": 4
+    },
+    "back": {
+      "meaning": "뒤로",
+      "chapter": 4
+    },
+    "bad": {
+      "meaning": "나쁜",
+      "chapter": 4
+    },
+    "bag": {
+      "meaning": "가방",
+      "chapter": 4
+    },
+    "ball": {
+      "meaning": "공",
+      "chapter": 4
+    },
+    "balloon": {
+      "meaning": "풍선",
+      "chapter": 4
+    },
+    "banana": {
+      "meaning": "바나나",
+      "chapter": 5
+    },
+    "band": {
+      "meaning": "밴드, 악단",
+      "chapter": 5
+    },
+    "bank": {
+      "meaning": "은행",
+      "chapter": 5
+    },
+    "base": {
+      "meaning": "기초",
+      "chapter": 5
+    },
+    "basket": {
+      "meaning": "바구니",
+      "chapter": 5
+    },
+    "bath": {
+      "meaning": "목욕",
+      "chapter": 5
+    },
+    "be": {
+      "meaning": "~이다",
+      "chapter": 5
+    },
+    "beach": {
+      "meaning": "해변",
+      "chapter": 5
+    },
+    "bear": {
+      "meaning": "곰",
+      "chapter": 5
+    },
+    "beautiful": {
+      "meaning": "아름다운",
+      "chapter": 5
+    }
+  }
+}
