@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Disable zooming on mobile to prevent virtual keyboard popups and layout breaks -->
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Dino Lex - Tablet Mode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #818cf8;
+            --primary-glow: rgba(129, 140, 248, 0.3);
+            --secondary: #f472b6;
+            --background: #0f172a;
+            --surface: rgba(30, 41, 59, 0.9);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --error: #f87171;
+            --success: #34d399;
+
+            --key-bg: #334155;
+            --key-shadow: 0 4px 0 #1e293b;
+            --key-active: #475569;
+            --key-active-shadow: 0 0px 0 #1e293b;
+            --key-special: #1e293b;
+            --key-special-shadow: 0 4px 0 #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
+
+        body {
+            background-color: var(--background);
+            background-image:
+                radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(219, 39, 119, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            font-family: 'Jua', 'Outfit', sans-serif !important;
+            height: 100vh;
+            /* iOS Safari bottom bar fix */
+            /* height: 100dvh; */
+            height: -webkit-fill-available;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- Global Header --- */
+        .header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-panel {
+            display: flex;
+            gap: 10px;
+        }
+
+        .stat-item {
+            background: var(--surface);
+            padding: 5px 10px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        /* --- Game Area (Top Half) --- */
+        .game-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        #word-display {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            min-height: 100px;
+            color: #cbd5e1;
+            text-align: center;
+            word-break: break-all;
+        }
+
+        #word-display span.correct {
+            color: var(--primary);
+        }
+
+        #word-display span.current {
+            border-bottom: 4px solid var(--secondary);
+            color: var(--text-main);
+        }
+
+        #word-display span.error {
+            color: var(--error);
+            text-decoration: underline red;
+        }
+
+        #meaning-display {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 800;
+            min-height: 2.2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .fake-input {
+            width: 60%;
+            max-width: 500px;
+            height: 70px;
+            background: var(--surface);
+            border: 2px solid var(--key-bg);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+
+        .fake-input.correct-flash {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--success);
+        }
+
+        .combo-counter {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--secondary);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .combo-counter.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.2s ease-in-out;
+        }
+
+        /* --- Overlays (Start/Clear screen) --- */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px var(--primary-glow);
+            font-family: inherit;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.95);
+            box-shadow: 0 4px 10px var(--primary-glow);
+        }
+
+        .mode-selection {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px 0;
+            max-height: 40vh;
+            overflow-y: auto;
+            padding: 5px;
+        }
+
+        .btn-mode {
+            background: var(--surface);
+            border: 2px solid var(--key-bg);
+            border-radius: 12px;
+            padding: 15px 0;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            font-family: inherit;
+        }
+
+        .btn-mode.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* --- Virtual Keyboard (Bottom Half) --- */
+        .keyboard-area {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: #020617;
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .kb-row {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .key {
+            flex: 1;
+            max-width: 65px;
+            height: 65px;
+            background: var(--key-bg);
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--key-shadow);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-main);
+            font-family: 'Outfit', 'Jua', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 0.05s;
+        }
+
+        .key:active,
+        .key.pressed {
+            background: var(--key-active);
+            box-shadow: var(--key-active-shadow);
+            transform: translateY(4px);
+        }
+
+        .key.special {
+            background: var(--key-special);
+            box-shadow: var(--key-special-shadow);
+            max-width: none;
+            flex: 1.5;
+            font-size: 1.5rem;
+        }
+
+        .key.special:active,
+        .key.special.pressed {
+            background: #94a3b8;
+            box-shadow: var(--key-active-shadow);
+        }
+
+        .keyboard-container {
+            display: none;
+        }
+
+        .keyboard-container.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Layout specific rows */
+        .kb-row:nth-child(2) {
+            padding: 0 10%;
+        }
+
+        .kb-row:nth-child(3) {
+            padding: 0 1%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="logo">DINO LEX</div>
+        <div class="stats-panel">
+            <div class="stat-item">
+                <span class="stat-label">CH</span>
+                <span id="stage-display" class="stat-value">1</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">TIME</span>
+                <span id="learn-timer" class="stat-value" style="color: var(--secondary);">60</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">SCORE</span>
+                <span id="words-count" class="stat-value">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Active Game Area -->
+    <div class="game-area">
+        <div id="combo" class="combo-counter">0</div>
+        <div id="word-display">READY</div>
+        <div id="meaning-display"></div>
+        <div id="fake-input" class="fake-input"></div>
+    </div>
+
+    <!-- Virtual Keyboard Area -->
+    <div class="keyboard-area">
+
+        <!-- English QWERTY -->
+        <div id="kb-en" class="keyboard-container active">
+            <div class="kb-row">
+                <button class="key" data-key="q">q</button>
+                <button class="key" data-key="w">w</button>
+                <button class="key" data-key="e">e</button>
+                <button class="key" data-key="r">r</button>
+                <button class="key" data-key="t">t</button>
+                <button class="key" data-key="y">y</button>
+                <button class="key" data-key="u">u</button>
+                <button class="key" data-key="i">i</button>
+                <button class="key" data-key="o">o</button>
+                <button class="key" data-key="p">p</button>
+            </div>
+            <div class="kb-row">
+                <button class="key" data-key="a">a</button>
+                <button class="key" data-key="s">s</button>
+                <button class="key" data-key="d">d</button>
+                <button class="key" data-key="f">f</button>
+                <button class="key" data-key="g">g</button>
+                <button class="key" data-key="h">h</button>
+                <button class="key" data-key="j">j</button>
+                <button class="key" data-key="k">k</button>
+                <button class="key" data-key="l">l</button>
+            </div>
+            <div class="kb-row">
+                <button class="key special" data-key="Shift">⬆</button>
+                <button class="key" data-key="z">z</button>
+                <button class="key" data-key="x">x</button>
+                <button class="key" data-key="c">c</button>
+                <button class="key" data-key="v">v</button>
+                <button class="key" data-key="b">b</button>
+                <button class="key" data-key="n">n</button>
+                <button class="key" data-key="m">m</button>
+                <button class="key special" data-key="Backspace">⌫</button>
+            </div>
+            <div class="kb-row">
+                <button class="key special spacebar"
+                    style="max-width: none; flex: 2; font-size: 1.1rem; text-transform: lowercase; color: var(--text-dim);"
+                    data-key=" ">space</button>
+            </div>
+        </div>
+
+        <!-- Korean Two-Set (Dubeolsik) -->
+        <div id="kb-ko" class="keyboard-container">
+            <div class="kb-row">
+                <button class="key" data-key="ㅂ">ㅂ</button>
+                <button class="key" data-key="ㅈ">ㅈ</button>
+                <button class="key" data-key="ㄷ">ㄷ</button>
+                <button class="key" data-key="ㄱ">ㄱ</button>
+                <button class="key" data-key="ㅅ">ㅅ</button>
+                <button class="key" data-key="ㅛ">ㅛ</button>
+                <button class="key" data-key="ㅕ">ㅕ</button>
+                <button class="key" data-key="ㅑ">ㅑ</button>
+                <button class="key" data-key="ㅐ">ㅐ</button>
+                <button class="key" data-key="ㅔ">ㅔ</button>
+            </div>
+            <div class="kb-row">
+                <button class="key" data-key="ㅁ">ㅁ</button>
+                <button class="key" data-key="ㄴ">ㄴ</button>
+                <button class="key" data-key="ㅇ">ㅇ</button>
+                <button class="key" data-key="ㄹ">ㄹ</button>
+                <button class="key" data-key="ㅎ">ㅎ</button>
+                <button class="key" data-key="ㅗ">ㅗ</button>
+                <button class="key" data-key="ㅓ">ㅓ</button>
+                <button class="key" data-key="ㅏ">ㅏ</button>
+                <button class="key" data-key="ㅣ">ㅣ</button>
+            </div>
+            <div class="kb-row">
+                <button class="key special" data-key="Shift" id="ko-shift">⬆</button>
+                <button class="key" data-key="~">~</button>
+                <button class="key" data-key="ㅋ">ㅋ</button>
+                <button class="key" data-key="ㅌ">ㅌ</button>
+                <button class="key" data-key="ㅊ">ㅊ</button>
+                <button class="key" data-key="ㅍ">ㅍ</button>
+                <button class="key" data-key="ㅠ">ㅠ</button>
+                <button class="key" data-key="ㅜ">ㅜ</button>
+                <button class="key" data-key="ㅡ">ㅡ</button>
+                <button class="key special" data-key="Backspace">⌫</button>
+            </div>
+            <div class="kb-row">
+                <button class="key special spacebar"
+                    style="max-width: none; flex: 2; font-size: 1.1rem; color: var(--text-dim);"
+                    data-key=" ">간격</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start / Chapter Select Screen -->
+    <div id="start-screen" class="overlay">
+        <h1 style="font-size: 3rem; font-weight: 800; color: var(--primary); margin-bottom: 20px;">Dino Lex</h1>
+        <p style="color: var(--text-dim); font-size: 1.2rem; margin-bottom: 10px;">Select Chapter</p>
+        <div class="mode-selection" id="chapter-list">
+            <!-- Dynamically populated -->
+        </div>
+        <button id="start-btn" class="btn-primary" onclick="startGame()">START</button>
+    </div>
+
+    <!-- Stage Clear / Game Over Overlays -->
+    <div id="stage-clear-screen" class="overlay hidden">
+        <h1 style="font-size: 3rem; color: var(--success); text-align: center;">STAGE<br>CLEAR!</h1>
+    </div>
+
+    <div id="game-over-screen" class="overlay hidden">
+        <h1 style="font-size: 3.5rem; color: var(--primary); margin-bottom: 10px;">CLEAR!</h1>
+        <p id="final-stats-text" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 30px;">Words: 0</p>
+        <button class="btn-primary" onclick="startGame()" style="margin-bottom: 15px;">PLAY AGAIN</button>
+        <button class="btn-primary" onclick="location.reload()"
+            style="background: var(--text-dim); box-shadow: none; margin-top: 0;">MENU</button>
+    </div>
+
+    <script>
+        // --- Hangul Automata Engine ---
+        const Hangul = {
+            cho: "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ",
+            jung: "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ",
+            jong: " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ",
+            alphabet: {
+                'q': 'ㅂ', 'Q': 'ㅃ', 'w': 'ㅈ', 'W': 'ㅉ', 'e': 'ㄷ', 'E': 'ㄸ', 'r': 'ㄱ', 'R': 'ㄲ', 't': 'ㅅ', 'T': 'ㅆ',
+                'a': 'ㅁ', 's': 'ㄴ', 'd': 'ㅇ', 'f': 'ㄹ', 'g': 'ㅎ', 'z': 'ㅋ', 'x': 'ㅌ', 'c': 'ㅊ', 'v': 'ㅍ',
+                'y': 'ㅛ', 'u': 'ㅕ', 'i': 'ㅑ', 'o': 'ㅐ', 'O': 'ㅒ', 'p': 'ㅔ', 'P': 'ㅖ', 'h': 'ㅗ', 'j': 'ㅓ', 'k': 'ㅏ', 'l': 'ㅣ', 'b': 'ㅠ', 'n': 'ㅜ', 'm': 'ㅡ'
+            },
+            compose: function (chars) {
+                if (!chars) return "";
+                let res = "";
+                let i = 0;
+                while (i < chars.length) {
+                    let c = this.alphabet[chars[i]] || chars[i];
+                    let choIdx = this.cho.indexOf(c);
+                    if (choIdx !== -1 && i + 1 < chars.length) {
+                        let n = this.alphabet[chars[i + 1]] || chars[i + 1];
+                        let jungIdx = this.jung.indexOf(n);
+                        if (jungIdx !== -1) {
+                            let currentJungIdx = jungIdx;
+                            let nextI = i + 2;
+                            if (nextI < chars.length) {
+                                let n2 = this.alphabet[chars[nextI]] || chars[nextI];
+                                let dv = "";
+                                if (n === 'ㅗ') { if (n2 === 'ㅏ') dv = 'ㅘ'; else if (n2 === 'ㅐ') dv = 'ㅙ'; else if (n2 === 'ㅣ') dv = 'ㅚ'; }
+                                else if (n === 'ㅜ') { if (n2 === 'ㅓ') dv = 'ㅝ'; else if (n2 === 'ㅔ') dv = 'ㅞ'; else if (n2 === 'ㅣ') dv = 'ㅟ'; }
+                                else if (n === 'ㅡ' && n2 === 'ㅣ') dv = 'ㅢ';
+                                if (dv) { currentJungIdx = this.jung.indexOf(dv); nextI++; }
+                            }
+                            let jongIdx = 0;
+                            if (nextI < chars.length) {
+                                let n3 = this.alphabet[chars[nextI]] || chars[nextI];
+                                let pJongIdx = this.jong.indexOf(n3);
+                                if (pJongIdx > 0) {
+                                    let isAtEnd = (nextI + 1 >= chars.length);
+                                    let nextNotVowel = isAtEnd || (this.jung.indexOf(this.alphabet[chars[nextI + 1]] || chars[nextI + 1]) === -1);
+                                    if (isAtEnd || nextNotVowel) {
+                                        jongIdx = pJongIdx;
+                                        if (nextI + 1 < chars.length) {
+                                            let n4 = this.alphabet[chars[nextI + 1]] || chars[nextI + 1];
+                                            let cj = "";
+                                            if (n3 === 'ㄱ' && n4 === 'ㅅ') cj = 'ㄳ';
+                                            else if (n3 === 'ㄴ' && n4 === 'ㅈ') cj = 'ㄵ'; else if (n3 === 'ㄴ' && n4 === 'ㅎ') cj = 'ㄶ';
+                                            else if (n3 === 'ㄹ' && n4 === 'ㄱ') cj = 'ㄺ'; else if (n3 === 'ㄹ' && n4 === 'ㅁ') cj = 'ㄻ';
+                                            else if (n3 === 'ㄹ' && n4 === 'ㅂ') cj = 'ㄼ'; else if (n3 === 'ㄹ' && n4 === 'ㅅ') cj = 'ㄽ';
+                                            else if (n3 === 'ㄹ' && n4 === 'ㅌ') cj = 'ㄾ'; else if (n3 === 'ㄹ' && n4 === 'ㅍ') cj = 'ㄿ';
+                                            else if (n3 === 'ㄹ' && n4 === 'ㅎ') cj = 'ㅀ'; else if (n3 === 'ㅂ' && n4 === 'ㅅ') cj = 'ㅄ';
+                                            if (cj) {
+                                                let isAfterAtEnd = (nextI + 2 >= chars.length);
+                                                let afterNotVowel = isAfterAtEnd || (this.jung.indexOf(this.alphabet[chars[nextI + 2]] || chars[nextI + 2]) === -1);
+                                                if (isAfterAtEnd || afterNotVowel) { jongIdx = this.jong.indexOf(cj); nextI++; }
+                                            }
+                                        }
+                                        nextI++;
+                                    }
+                                }
+                            }
+                            res += String.fromCharCode(0xAC00 + (choIdx * 21 * 28) + (currentJungIdx * 28) + jongIdx);
+                            i = nextI; continue;
+                        }
+                    }
+                    res += c; i++;
+                }
+                return res;
+            }
+        };
+
+        const EMBEDDED_WORD_DATA = {
+            "시트1": {
+                "apple": { "meaning": "사과", "chapter": 1 },
+                "book": { "meaning": "책", "chapter": 1 },
+                "cat": { "meaning": "고양이", "chapter": 1 },
+                "dog": { "meaning": "개", "chapter": 1 },
+                "water": { "meaning": "물", "chapter": 1 },
+                "year": { "meaning": "해(연도)", "chapter": 1 },
+                "zoo": { "meaning": "동물원", "chapter": 1 },
+                "school": { "meaning": "학교", "chapter": 1 },
+                "bread": { "meaning": "빵", "chapter": 2 },
+                "clean": { "meaning": "깨끗한", "chapter": 2 },
+                "early": { "meaning": "일찍", "chapter": 2 },
+                "friend": { "meaning": "친구", "chapter": 2 },
+                "island": { "meaning": "섬", "chapter": 3 }
+            }
+        };
+        let WORD_DATABASE = EMBEDDED_WORD_DATA["시트1"];
+
+        const RetroAudio = {
+            ctx: null, masterVolume: 0.5,
+            init() {
+                if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                if (this.ctx.state === 'suspended') this.ctx.resume();
+            },
+            play(type) {
+                if (this.masterVolume <= 0) return;
+                this.init();
+                const now = this.ctx.currentTime;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.connect(gain); gain.connect(this.ctx.destination);
+
+                if (type === 'correct') {
+                    const notes = [523.25, 659.25, 783.99];
+                    notes.forEach((freq, i) => {
+                        const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
+                        o.type = 'triangle'; o.frequency.setValueAtTime(freq, now + i * 0.08);
+                        g.gain.setValueAtTime(0.1, now + i * 0.08); g.gain.exponentialRampToValueAtTime(0.01, now + i * 0.08 + 0.2);
+                        o.connect(g); g.connect(this.ctx.destination);
+                        o.start(now + i * 0.08); o.stop(now + i * 0.08 + 0.2);
+                    });
+                } else if (type === 'error') {
+                    osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, now);
+                    gain.gain.setValueAtTime(0.1, now); gain.gain.linearRampToValueAtTime(0.01, now + 0.2);
+                    osc.start(now); osc.stop(now + 0.2);
+                } else if (type === 'stageClear') {
+                    osc.type = 'square'; osc.frequency.setValueAtTime(400, now); osc.frequency.exponentialRampToValueAtTime(1200, now + 0.1);
+                    gain.gain.setValueAtTime(0.15, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                    osc.start(now); osc.stop(now + 0.2);
+                } else if (type === 'tap') {
+                    osc.type = 'triangle'; osc.frequency.setValueAtTime(600, now); osc.frequency.exponentialRampToValueAtTime(200, now + 0.03);
+                    gain.gain.setValueAtTime(0.05, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.03);
+                    osc.start(now); osc.stop(now + 0.03);
+                }
+            }
+        };
+
+        const state = {
+            isPlaying: false, combo: 0, selectedChapter: 1, chapters: [], stages: [],
+            currentStageIndex: 0, stageWords: [], recallTimer: null,
+            wordData: [], currentWord: null, typingStage: 'en', wordsCorrect: 0,
+            rawInput: "", // Stores alphabet sequence for Hangul or plain EN string
+            timerValue: 0, timerLoop: null,
+            isShiftActive: false,
+        };
+
+        const els = {
+            wordDisplay: document.getElementById('word-display'),
+            meaningDisplay: document.getElementById('meaning-display'),
+            fakeInput: document.getElementById('fake-input'),
+            wordsCount: document.getElementById('words-count'),
+            stageDisplay: document.getElementById('stage-display'),
+            combo: document.getElementById('combo'),
+            startScreen: document.getElementById('start-screen'),
+            stageClearScreen: document.getElementById('stage-clear-screen'),
+            gameOverScreen: document.getElementById('game-over-screen'),
+            finalStats: document.getElementById('final-stats-text'),
+            timer: document.getElementById('learn-timer'),
+            chapterList: document.getElementById('chapter-list'),
+            kbEn: document.getElementById('kb-en'),
+            kbKo: document.getElementById('kb-ko'),
+        };
+
+        async function init() {
+            window.speechSynthesis.getVoices(); // Fix for Edge
+            try {
+                const response = await fetch('words01.json');
+                if (response.ok) {
+                    const rawData = await response.json();
+                    WORD_DATABASE = rawData["시트1"];
+                }
+            } catch (e) { }
+
+            state.wordData = Object.keys(WORD_DATABASE).map(key => ({
+                word: key, meaning: WORD_DATABASE[key].meaning, chapter: WORD_DATABASE[key].chapter
+            }));
+            state.chapters = [...new Set(state.wordData.map(w => w.chapter))].sort((a, b) => a - b);
+            renderChapterSelection();
+
+            // Bind Keyboard
+            document.querySelectorAll('.key').forEach(btn => {
+                btn.addEventListener('touchstart', (e) => { e.preventDefault(); handleKey(btn); }, { passive: false });
+                btn.addEventListener('mousedown', (e) => { e.preventDefault(); handleKey(btn); });
+            });
+        }
+
+        function renderChapterSelection() {
+            els.chapterList.innerHTML = '';
+            state.chapters.forEach(chap => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-mode' + (state.selectedChapter === chap ? ' active' : '');
+                btn.innerText = chap;
+                btn.onclick = () => {
+                    state.selectedChapter = chap;
+                    document.querySelectorAll('.btn-mode').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                };
+                els.chapterList.appendChild(btn);
+            });
+        }
+
+        function startGame() {
+            RetroAudio.init();
+            const chap = state.selectedChapter;
+            state.wordsCorrect = 0; state.combo = 0; state.currentStageIndex = 0;
+            state.stages = [{ chapter: chap, type: 'learn' }, { chapter: chap, type: 'recall' }];
+
+            els.wordsCount.innerText = '0';
+            els.combo.classList.remove('active');
+            els.startScreen.classList.add('hidden');
+            els.gameOverScreen.classList.add('hidden');
+            els.stageClearScreen.classList.add('hidden');
+            state.isPlaying = true;
+
+            if (state.timerLoop) clearInterval(state.timerLoop);
+            state.timerLoop = setInterval(updateTimerTick, 1000);
+
+            startStage();
+        }
+
+        function updateTimerTick() {
+            if (!state.isPlaying || state.timerValue <= 0) return;
+            state.timerValue -= 1000;
+            els.timer.innerText = Math.ceil(state.timerValue / 1000);
+            if (state.timerValue <= 0) handleStageClear();
+        }
+
+        function startStage() {
+            const currentStage = state.stages[state.currentStageIndex];
+            state.stageWords = state.wordData.filter(w => w.chapter === currentStage.chapter).sort(() => Math.random() - 0.5);
+            els.stageClearScreen.classList.add('hidden');
+
+            els.stageDisplay.innerText = `${currentStage.chapter} ${currentStage.type.toUpperCase()}`;
+            if (currentStage.type === 'learn') {
+                state.timerValue = 60000;
+                els.timer.innerText = '60';
+                els.timer.parentElement.style.opacity = '1';
+            } else {
+                state.timerValue = 0;
+                els.timer.parentElement.style.opacity = '0';
+            }
+            nextWord();
+        }
+
+        function nextWord() {
+            if (!state.isPlaying) return;
+            if (state.recallTimer) { clearTimeout(state.recallTimer); state.recallTimer = null; }
+
+            if (state.stageWords.length === 0) {
+                const currentStage = state.stages[state.currentStageIndex];
+                if (currentStage.type === 'learn') {
+                    state.stageWords = state.wordData.filter(w => w.chapter === currentStage.chapter).sort(() => Math.random() - 0.5);
+                } else {
+                    return handleStageClear();
+                }
+            }
+
+            state.currentWord = state.stageWords.pop();
+            const currentStage = state.stages[state.currentStageIndex];
+
+            if (currentStage.type === 'learn') {
+                state.typingStage = 'en';
+                speak(state.currentWord.word);
+            } else {
+                state.typingStage = 'recall';
+                state.recallTimer = setTimeout(handleRecallTimeout, 10000);
+            }
+
+            state.rawInput = "";
+            els.fakeInput.innerText = "";
+            switchKeyboard();
+            renderWord();
+        }
+
+        function handleRecallTimeout() {
+            if (!state.isPlaying) return;
+            RetroAudio.play('error');
+            els.wordDisplay.classList.add('shake');
+            setTimeout(() => els.wordDisplay.classList.remove('shake'), 200);
+            state.combo = 0; els.combo.classList.remove('active');
+
+            els.wordDisplay.innerHTML = `<span class="error">${state.currentWord.word}</span>`;
+            els.meaningDisplay.innerHTML = `<span style="color: var(--primary);">Try again!</span>`;
+            state.stageWords.unshift(state.currentWord);
+            setTimeout(nextWord, 1200);
+        }
+
+        function handleStageClear() {
+            state.isPlaying = false;
+            els.wordDisplay.innerHTML = '';
+            els.fakeInput.innerText = '';
+            els.meaningDisplay.innerText = '';
+            els.stageClearScreen.classList.remove('hidden');
+            RetroAudio.play('stageClear');
+
+            setTimeout(() => {
+                state.currentStageIndex++;
+                if (state.currentStageIndex >= state.stages.length) {
+                    els.stageClearScreen.classList.add('hidden');
+                    els.finalStats.innerText = `Words: ${state.wordsCorrect}`;
+                    els.gameOverScreen.classList.remove('hidden');
+                } else {
+                    state.isPlaying = true;
+                    startStage();
+                }
+            }, 2500);
+        }
+
+        function switchKeyboard() {
+            if (state.typingStage === 'en' || state.typingStage === 'recall') {
+                els.kbEn.classList.add('active');
+                els.kbKo.classList.remove('active');
+            } else {
+                els.kbEn.classList.remove('active');
+                els.kbKo.classList.add('active');
+            }
+        }
+
+        function renderWord() {
+            const isRecall = state.stages[state.currentStageIndex].type === 'recall';
+            let word;
+            if (!isRecall) {
+                word = state.typingStage === 'en' ? state.currentWord.word : state.currentWord.meaning;
+                if (state.typingStage === 'ko') els.meaningDisplay.innerText = "";
+                else els.meaningDisplay.innerText = state.currentWord.meaning;
+            } else {
+                els.meaningDisplay.innerText = state.currentWord.meaning;
+                word = state.currentWord.word;
+            }
+
+            const typed = els.fakeInput.innerText;
+            let html = '';
+            for (let i = 0; i < word.length; i++) {
+                if (i < typed.length) {
+                    let isMismatch = typed[i] !== word[i];
+                    let charClass = isMismatch ? 'error' : 'correct';
+                    if (state.typingStage === 'ko' && i === typed.length - 1 && typed.length <= word.length) {
+                        charClass = 'correct'; // Tolerance for incomplete Hangul composition
+                    }
+                    html += `<span class="${charClass}">${word[i]}</span>`;
+                } else if (i === typed.length) {
+                    html += `<span class="current">${isRecall ? '?' : word[i]}</span>`;
+                } else {
+                    html += `<span>${isRecall ? '?' : word[i]}</span>`;
+                }
+            }
+            els.wordDisplay.innerHTML = html;
+        }
+
+        /* Virtual Keyboard Input Handler */
+        const shiftMap = {
+            'ㄱ': 'ㄲ', 'ㄷ': 'ㄸ', 'ㅂ': 'ㅃ', 'ㅅ': 'ㅆ', 'ㅈ': 'ㅉ',
+            'q': 'Q', 'w': 'W', 'e': 'E', 'r': 'R', 't': 'T', 'o': 'O', 'p': 'P' // mapping back to Hangul alphabet if needed
+        };
+
+        function handleKey(btn) {
+            btn.classList.add('pressed');
+            setTimeout(() => btn.classList.remove('pressed'), 100);
+            if (!state.isPlaying) return;
+
+            RetroAudio.play('tap');
+            let key = btn.getAttribute('data-key');
+
+            if (key === 'Shift') {
+                state.isShiftActive = !state.isShiftActive;
+                btn.style.background = state.isShiftActive ? 'var(--primary)' : '';
+                btn.style.color = state.isShiftActive ? 'white' : '';
+                return;
+            }
+
+            if (key === 'Backspace') {
+                state.rawInput = state.rawInput.slice(0, -1);
+            } else {
+                // Apply shift for Korean double consonants
+                if (state.isShiftActive && shiftMap[key]) {
+                    if (state.typingStage === 'ko') key = shiftMap[key];
+                    // Turn off shift
+                    state.isShiftActive = false;
+                    const shiftBtn = document.getElementById('ko-shift');
+                    if (shiftBtn) { shiftBtn.style.background = ''; shiftBtn.style.color = ''; }
+                }
+
+                if (state.typingStage === 'ko') {
+                    // map visual korean button keys back to internal 'alphabet' keys for Hangul.compose
+                    // the easiest way is to push the mapped english alphabet that corresponds to the korean key, or modify compose
+                    const revMap = Object.entries(Hangul.alphabet).find(([k, v]) => v === key);
+                    state.rawInput += revMap ? revMap[0] : key;
+                } else {
+                    state.rawInput += key.toLowerCase();
+                }
+            }
+
+            // Render Input Text
+            if (state.typingStage === 'ko') {
+                els.fakeInput.innerText = Hangul.compose(state.rawInput);
+            } else {
+                els.fakeInput.innerText = state.rawInput;
+            }
+
+            checkAnswer();
+        }
+
+        function checkAnswer() {
+            const typed = els.fakeInput.innerText;
+            const target = (state.typingStage === 'en' || state.typingStage === 'recall') ? state.currentWord.word : state.currentWord.meaning;
+            renderWord();
+
+            if (typed === target) {
+                if (state.typingStage === 'en') {
+                    state.typingStage = 'ko';
+                    state.rawInput = "";
+                    els.fakeInput.innerText = '';
+                    switchKeyboard();
+                    RetroAudio.play('stageClear');
+                    renderWord();
+                } else {
+                    // Correct!
+                    if (state.recallTimer) { clearTimeout(state.recallTimer); state.recallTimer = null; }
+                    state.wordsCorrect++; state.combo++;
+                    els.wordsCount.innerText = state.wordsCorrect;
+                    els.combo.innerText = `+${state.combo}`; els.combo.classList.add('active');
+                    els.fakeInput.classList.add('correct-flash');
+                    setTimeout(() => els.fakeInput.classList.remove('correct-flash'), 200);
+
+                    if (state.typingStage === 'recall') speak(state.currentWord.word);
+                    RetroAudio.play('correct');
+
+                    state.isPlaying = false; // pause slightly
+                    setTimeout(() => {
+                        state.isPlaying = true;
+                        state.rawInput = "";
+                        els.fakeInput.innerText = '';
+                        nextWord();
+                    }, 800);
+                }
+            } else if (typed.length > 0) {
+                // Basic error checking
+                if (state.typingStage === 'en' || state.typingStage === 'recall') {
+                    if (!target.startsWith(typed)) errorFeedback();
+                } else {
+                    if (typed.length > target.length) errorFeedback();
+                }
+            }
+        }
+
+        function errorFeedback() {
+            RetroAudio.play('error');
+            els.wordDisplay.classList.add('shake');
+            setTimeout(() => els.wordDisplay.classList.remove('shake'), 200);
+            state.combo = 0; els.combo.classList.remove('active');
+        }
+
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            setTimeout(() => {
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = 'en-US'; msg.volume = 1;
+                const voices = window.speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    const enVoice = voices.find(v => v.lang.startsWith('en-US')) || voices.find(v => v.lang.startsWith('en'));
+                    if (enVoice) msg.voice = enVoice;
+                }
+                window._lastSpeechMsg = msg;
+                window.speechSynthesis.speak(msg);
+            }, 50);
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (!state.isPlaying) return;
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            
+            let key = e.key;
+
+            if (key === 'Backspace' || key === ' ' || key === 'Shift') {
+                e.preventDefault();
+                const btn = document.querySelector(`.keyboard-container.active .key[data-key="${key}"]`);
+                if (btn) handleKey(btn);
+                return;
+            }
+
+            if (key.length === 1) {
+                let targetDataKey = key.toLowerCase();
+                
+                if (state.typingStage === 'ko' && /[a-zA-Z]/.test(key)) {
+                    let mapKo = Hangul.alphabet[targetDataKey];
+                    if (key === key.toUpperCase() && shiftMap[mapKo]) {
+                        mapKo = shiftMap[mapKo];
+                    }
+                    targetDataKey = mapKo || key;
+                } else if (state.typingStage === 'ko' && /[ㄱ-ㅎㅏ-ㅣ]/.test(key)) {
+                    targetDataKey = key;
+                } else if ((state.typingStage === 'en' || state.typingStage === 'recall') && /[ㄱ-ㅎㅏ-ㅣ]/.test(key)) {
+                    const rev = Object.entries(Hangul.alphabet).find(([k, v]) => v === key);
+                    if (rev) targetDataKey = rev[0];
+                }
+
+                const kbContainer = state.typingStage === 'ko' ? document.getElementById('kb-ko') : document.getElementById('kb-en');
+                const btn = kbContainer.querySelector(`.key[data-key="${targetDataKey}"]`);
+                if (btn) {
+                    e.preventDefault();
+                    handleKey(btn);
+                }
+            }
+        });
+
+        init();
+    </script>
+</body>
+
+</html>
