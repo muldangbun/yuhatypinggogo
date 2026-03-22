@@ -11,22 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-glow: rgba(79, 70, 229, 0.3);
-            --secondary: #db2777;
-            --background: #f8fafc;
-            --surface: rgba(255, 255, 255, 0.9);
-            --text-main: #1e293b;
-            --text-dim: #64748b;
-            --error: #ef4444;
-            --success: #10b981;
+            --primary: #818cf8;
+            --primary-glow: rgba(129, 140, 248, 0.3);
+            --secondary: #f472b6;
+            --background: #0f172a;
+            --surface: rgba(30, 41, 59, 0.9);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --error: #f87171;
+            --success: #34d399;
             
-            --key-bg: #fff;
-            --key-shadow: 0 4px 0 #cbd5e1;
-            --key-active: #e2e8f0;
-            --key-active-shadow: 0 0px 0 #cbd5e1;
-            --key-special: #cbd5e1;
-            --key-special-shadow: 0 4px 0 #94a3b8;
+            --key-bg: #334155;
+            --key-shadow: 0 4px 0 #1e293b;
+            --key-active: #475569;
+            --key-active-shadow: 0 0px 0 #1e293b;
+            --key-special: #1e293b;
+            --key-special-shadow: 0 4px 0 #0f172a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; }
@@ -54,9 +54,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255,255,255,0.7);
+            background: var(--surface);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             z-index: 10;
         }
 
@@ -75,12 +75,12 @@
         }
 
         .stat-item {
-            background: white;
+            background: var(--surface);
             padding: 5px 10px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .stat-label {
@@ -133,8 +133,8 @@
         .fake-input {
             width: 80%;
             height: 50px;
-            background: white;
-            border: 2px solid #e2e8f0;
+            background: var(--surface);
+            border: 2px solid var(--key-bg);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -179,7 +179,7 @@
         .overlay {
             position: absolute;
             inset: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
@@ -226,8 +226,8 @@
         }
 
         .btn-mode {
-            background: #fff;
-            border: 2px solid #e2e8f0;
+            background: var(--surface);
+            border: 2px solid var(--key-bg);
             border-radius: 12px;
             padding: 15px 0;
             font-weight: 800;
@@ -246,7 +246,7 @@
             display: flex;
             flex-direction: column;
             padding: 10px;
-            background: #e2e8f0;
+            background: #020617;
             padding-bottom: max(10px, env(safe-area-inset-bottom));
         }
 
@@ -379,6 +379,9 @@
                 <button class="key" data-key="m">m</button>
                 <button class="key special" data-key="Backspace">⌫</button>
             </div>
+            <div class="kb-row">
+                <button class="key special spacebar" style="max-width: none; flex: 2; font-size: 1.1rem; text-transform: lowercase; color: var(--text-dim);" data-key=" ">space</button>
+            </div>
         </div>
 
         <!-- Korean Two-Set (Dubeolsik) -->
@@ -417,6 +420,9 @@
                 <button class="key" data-key="ㅜ">ㅜ</button>
                 <button class="key" data-key="ㅡ">ㅡ</button>
                 <button class="key special" data-key="Backspace">⌫</button>
+            </div>
+            <div class="kb-row">
+                <button class="key special spacebar" style="max-width: none; flex: 2; font-size: 1.1rem; color: var(--text-dim);" data-key=" ">간격</button>
             </div>
         </div>
     </div>
@@ -563,6 +569,10 @@
                     osc.type = 'square'; osc.frequency.setValueAtTime(400, now); osc.frequency.exponentialRampToValueAtTime(1200, now + 0.1);
                     gain.gain.setValueAtTime(0.15, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
                     osc.start(now); osc.stop(now + 0.2);
+                } else if (type === 'tap') {
+                    osc.type = 'triangle'; osc.frequency.setValueAtTime(600, now); osc.frequency.exponentialRampToValueAtTime(200, now + 0.03);
+                    gain.gain.setValueAtTime(0.05, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.03);
+                    osc.start(now); osc.stop(now + 0.03);
                 }
             }
         };
@@ -790,6 +800,7 @@
             setTimeout(() => btn.classList.remove('pressed'), 100);
             if (!state.isPlaying) return;
 
+            RetroAudio.play('tap');
             let key = btn.getAttribute('data-key');
             
             if (key === 'Shift') {
