@@ -5,6 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dino Lex - Light Mode Challenge</title>
+    <script>
+        // Device Detection & Redirection
+        const ua = navigator.userAgent;
+        // iPad Pro (MacIntel + touch) or common tablet UAs
+        const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/i.test(ua) || (navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
+        const isMobile = /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua);
+
+        if (isTablet) {
+            window.location.replace("tablet.html");
+        } else if (isMobile) {
+            window.location.replace("mobile.html");
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
