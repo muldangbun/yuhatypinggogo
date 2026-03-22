@@ -1253,7 +1253,7 @@
             const word = state.currentWord.word;
             els.wordDisplay.innerHTML = `<span class="error">${word}</span>`;
             els.meaningDisplay.innerHTML = `<span style="color: var(--primary); font-size: 0.9rem;">Try again later!</span>`;
-            
+
             // Add back to the beginning of the queue (will be popped last)
             state.stageWords.unshift(state.currentWord);
 
@@ -1501,9 +1501,26 @@
 
         function speak(text) {
             if (RetroAudio.masterVolume <= 0) return;
+
+            // Cancel any ongoing speech. This fixes a common bug where speechSynthesis gets stuck.
+            window.speechSynthesis.cancel();
+
             const msg = new SpeechSynthesisUtterance(text);
             msg.lang = 'en-US';
             msg.volume = RetroAudio.masterVolume;
+
+            // Attempt to explicitly set an English voice, which helps on some OS/browser combinations.
+            const voices = window.speechSynthesis.getVoices();
+            if (voices.length > 0) {
+                const enVoice = voices.find(v => v.lang.startsWith('en-US')) || voices.find(v => v.lang.startsWith('en'));
+                if (enVoice) {
+                    msg.voice = enVoice;
+                }
+            }
+
+            // Save reference to prevent garbage collection on long words (Chrome bug)
+            window._lastSpeechMsg = msg;
+
             window.speechSynthesis.speak(msg);
         }
 
