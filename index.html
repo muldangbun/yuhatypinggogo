@@ -123,7 +123,7 @@
         #game-container {
             position: relative;
             width: 900px;
-            height: 300px;
+            height: 900px;
             background: var(--surface);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -448,7 +448,7 @@
 
     <div id="game-container">
         <div id="game-stage">
-            <canvas id="game-canvas" width="900" height="300"></canvas>
+            <canvas id="game-canvas" width="900" height="900"></canvas>
         </div>
 
         <div id="combo" class="combo-counter">0</div>
@@ -486,8 +486,8 @@
     </div>
 
     <div id="typing-section" class="typing-section hidden">
-        <div id="word-display"></div>
         <div id="meaning-display"></div>
+        <div id="word-display"></div>
         <div class="input-wrapper">
             <input type="text" id="typing-input" placeholder="" autocomplete="off" disabled>
         </div>
@@ -566,56 +566,65 @@
         // Embedded Database to bypass CORS on local file protocol
         const EMBEDDED_WORD_DATA = {
             "시트1": {
-                "apple": { "meaning": "사과", "chapter": 1 },
-                "book": { "meaning": "책", "chapter": 1 },
-                "cat": { "meaning": "고양이", "chapter": 1 },
-                "dog": { "meaning": "개", "chapter": 1 },
-                "egg": { "meaning": "계란", "chapter": 1 },
-                "fish": { "meaning": "물고기", "chapter": 1 },
-                "girl": { "meaning": "소녀", "chapter": 1 },
-                "hand": { "meaning": "손", "chapter": 1 },
-                "ice": { "meaning": "얼음", "chapter": 1 },
-                "jump": { "meaning": "뛰다", "chapter": 1 },
-                "king": { "meaning": "왕", "chapter": 1 },
-                "love": { "meaning": "사랑", "chapter": 1 },
-                "milk": { "meaning": "우유", "chapter": 1 },
-                "nose": { "meaning": "코", "chapter": 1 },
-                "open": { "meaning": "열다", "chapter": 1 },
-                "park": { "meaning": "공원", "chapter": 1 },
-                "queen": { "meaning": "여왕", "chapter": 1 },
-                "rain": { "meaning": "비", "chapter": 1 },
-                "star": { "meaning": "별", "chapter": 1 },
-                "tree": { "meaning": "나무", "chapter": 1 },
-                "uncle": { "meaning": "삼촌", "chapter": 2 },
-                "voice": { "meaning": "목소리", "chapter": 2 },
-                "water": { "meaning": "물", "chapter": 1 },
-                "year": { "meaning": "해(연도)", "chapter": 1 },
-                "zoo": { "meaning": "동물원", "chapter": 1 },
-                "bread": { "meaning": "빵", "chapter": 2 },
-                "clean": { "meaning": "깨끗한", "chapter": 2 },
-                "dance": { "meaning": "춤추다", "chapter": 1 },
-                "early": { "meaning": "일찍", "chapter": 2 },
-                "friend": { "meaning": "친구", "chapter": 2 },
-                "garden": { "meaning": "정원", "chapter": 2 },
-                "happy": { "meaning": "행복한", "chapter": 1 },
-                "island": { "meaning": "섬", "chapter": 3 },
-                "juice": { "meaning": "주스", "chapter": 1 },
-                "knife": { "meaning": "칼", "chapter": 3 },
-                "lemon": { "meaning": "레몬", "chapter": 1 },
-                "mountain": { "meaning": "산", "chapter": 3 },
-                "night": { "meaning": "밤", "chapter": 1 },
-                "ocean": { "meaning": "바다", "chapter": 3 },
-                "piano": { "meaning": "피아노", "chapter": 2 },
-                "quiet": { "meaning": "조용한", "chapter": 3 },
-                "river": { "meaning": "강", "chapter": 2 },
-                "school": { "meaning": "학교", "chapter": 1 },
-                "tiger": { "meaning": "호랑이", "chapter": 2 },
-                "under": { "meaning": "~아래에", "chapter": 2 },
-                "visit": { "meaning": "방문하다", "chapter": 3 },
-                "watch": { "meaning": "보다", "chapter": 1 },
-                "yellow": { "meaning": "노란색", "chapter": 1 },
-                "zebra": { "meaning": "얼룩말", "chapter": 2 },
-                "dream": { "meaning": "꿈", "chapter": 2 }
+                "about": { "meaning": "~에 대하여", "chapter": 1 },
+                "across": { "meaning": "가로지르는", "chapter": 1 },
+                "act": { "meaning": "행동하다", "chapter": 1 },
+                "address": { "meaning": "주소", "chapter": 1 },
+                "afraid": { "meaning": "두려워하는", "chapter": 1 },
+                "after": { "meaning": "~후에", "chapter": 1 },
+                "afternoon": { "meaning": "오후", "chapter": 1 },
+                "again": { "meaning": "다시", "chapter": 1 },
+                "age": { "meaning": "나이", "chapter": 1 },
+                "ago": { "meaning": "이전에", "chapter": 2 },
+                "air": { "meaning": "공기", "chapter": 2 },
+                "airport": { "meaning": "공항", "chapter": 2 },
+                "album": { "meaning": "앨범", "chapter": 2 },
+                "all": { "meaning": "모든 모두", "chapter": 2 },
+                "along": { "meaning": "~을 따라서", "chapter": 2 },
+                "always": { "meaning": "항상", "chapter": 2 },
+                "among": { "meaning": "~사이에", "chapter": 2 },
+                "and": { "meaning": "그리고", "chapter": 2 },
+                "angry": { "meaning": "화난", "chapter": 2 },
+                "animal": { "meaning": "동물", "chapter": 3 },
+                "answer": { "meaning": "대답", "chapter": 3 },
+                "any": { "meaning": "어떤 아무런", "chapter": 3 },
+                "apartment": { "meaning": "아파트", "chapter": 3 },
+                "apple": { "meaning": "사과", "chapter": 3 },
+                "arm": { "meaning": "팔", "chapter": 3 },
+                "around": { "meaning": "~주위에", "chapter": 3 },
+                "arrive": { "meaning": "도착하다", "chapter": 3 },
+                "as": { "meaning": "~로서", "chapter": 3 },
+                "ask": { "meaning": "묻다", "chapter": 3 },
+                "at": { "meaning": "~에", "chapter": 4 },
+                "aunt": { "meaning": "이모 아주머니", "chapter": 4 },
+                "autumn": { "meaning": "가을", "chapter": 4 },
+                "away": { "meaning": "떨어져", "chapter": 4 },
+                "baby": { "meaning": "아기", "chapter": 4 },
+                "back": { "meaning": "뒤로", "chapter": 4 },
+                "bad": { "meaning": "나쁜", "chapter": 4 },
+                "bag": { "meaning": "가방", "chapter": 4 },
+                "ball": { "meaning": "공", "chapter": 4 },
+                "balloon": { "meaning": "풍선", "chapter": 4 },
+                "banana": { "meaning": "바나나", "chapter": 5 },
+                "band": { "meaning": "밴드 악단", "chapter": 5 },
+                "bank": { "meaning": "은행", "chapter": 5 },
+                "base": { "meaning": "기초", "chapter": 5 },
+                "basket": { "meaning": "바구니", "chapter": 5 },
+                "bath": { "meaning": "목욕", "chapter": 5 },
+                "be": { "meaning": "~이다", "chapter": 5 },
+                "beach": { "meaning": "해변", "chapter": 5 },
+                "bear": { "meaning": "곰", "chapter": 5 },
+                "beautiful": { "meaning": "아름다운", "chapter": 5 },
+                "because": { "meaning": "왜냐하면", "chapter": 6 },
+                "become": { "meaning": "~가 되다", "chapter": 6 },
+                "bed": { "meaning": "침대", "chapter": 6 },
+                "before": { "meaning": "~전에", "chapter": 6 },
+                "begin": { "meaning": "시작하다", "chapter": 6 },
+                "behind": { "meaning": "뒤에", "chapter": 6 },
+                "bell": { "meaning": "종 벨", "chapter": 6 },
+                "below": { "meaning": "아래에", "chapter": 6 },
+                "bench": { "meaning": "벤치", "chapter": 6 },
+                "beside": { "meaning": "~옆에", "chapter": 6 }
             }
         };
         let WORD_DATABASE = EMBEDDED_WORD_DATA["시트1"];
@@ -784,25 +793,16 @@
         };
 
         const CONFIG = {
-            baseSpeed: 7,
-            jumpDuration: 600,
-            jumpPower: -0.6,
-            gravity: 0.003,
-            assets: {
-                ground: 'resource/new_ground.png',
-                cat: 'resource/cat-temp.png',
-                bullet: 'resource/bullet.png',
-                cloud: 'resource/new-cloud-sp.png',
-                dino: 'resource/new_run-dino.png'
-            },
-            bulletSpeed: 10,
-            dinoSpawnRate: 1000, // ms between spawns (2/sec)
-            dinoSpeed: 1.5, // pixels per frame to the right
-            dinoMaxHp: 5,
-            bulletDamage: 5,
-            dinoScale: 0.15, // size comparable to cat
-            catScale: 0.5, // size of the cat character
-            learnDuration: 60000, // 60 seconds (Easy to modify here)
+            enemySize: 25,
+            enemySpeed: 0.6,
+            spawnInterval: 400, 
+            bulletSpeed: 15,
+            bulletSize: 10,
+            wiggleAmplitude: 4,
+            wiggleFrequency: 0.05,
+            learnDuration: 60000,
+            basePosition: { x: 450, y: 887.5 }, // 900 / 2, 900 - 12.5
+            baseRadius: 12.5
         };
 
         let state = {
@@ -815,27 +815,20 @@
             stageWords: [],
             recallTimer: null,
             koErrorTimer: null,
-            recallTimeLimit: 5000,
-            speed: CONFIG.baseSpeed,
+            recallTimeLimit: 10000,
             wordData: [],
             currentWord: null,
             typingStage: 'en',
             wordsCorrect: 0,
             rawInput: "",
-            groundX: 0,
-            groundImg: new Image(),
-            catImg: new Image(),
             bullets: [],
-            bulletImg: new Image(),
-            clouds: [],
-            cloudImg: new Image(),
             enemies: [],
-            dinoImg: new Image(),
-            dinoSpawnTimer: 0,
+            enemySpawnTimer: 0,
             isStageTransitioning: false,
             lastInputLength: 0,
             timerValue: 0,
-            timerActive: false
+            timerActive: false,
+            lastTime: 0
         };
 
         const els = {
@@ -964,14 +957,9 @@
             RetroAudio.play('start');
             RetroAudio.startBGM('game');
 
-            // Pre-spawn clouds across the screen
-            state.clouds = [];
+            state.bullets = [];
             state.enemies = [];
-            state.dinoSpawnTimer = 0;
-            const cloudCount = 2 + Math.floor(Math.random() * 2);
-            for (let i = 0; i < cloudCount; i++) {
-                spawnCloud(Math.random() * els.canvas.width);
-            }
+            state.enemySpawnTimer = 0;
 
             if (!state.isPlaying) {
                 state.isPlaying = true;
@@ -1016,182 +1004,103 @@
 
         function gameLoop(timestamp) {
             requestAnimationFrame(gameLoop);
-            if (!state.isPlaying) {
-                return;
-            }
+            if (!state.isPlaying) return;
 
             if (!state.lastTime) state.lastTime = timestamp;
             const deltaTime = timestamp - state.lastTime;
             state.lastTime = timestamp;
 
-            // Error State Logic
-            if (state.errorStateTimer > 0) {
-                state.errorStateTimer -= deltaTime;
-                if (state.errorStateTimer <= 0) {
-                    state.isErrorState = false;
+            // Enemy Spawning
+            if (!state.isStageTransitioning) {
+                state.enemySpawnTimer += deltaTime;
+                if (state.enemySpawnTimer > CONFIG.spawnInterval) {
+                    state.enemySpawnTimer = 0;
+                    spawnEnemy();
                 }
             }
 
-            // Smooth speed adjustment (lerp)
-            const targetSpeed = state.isErrorState ? CONFIG.baseSpeed * 0.3 : CONFIG.baseSpeed;
-            state.speed += (targetSpeed - state.speed) * 0.05;
+            // Update Enemies
+            for (let i = state.enemies.length - 1; i >= 0; i--) {
+                const enemy = state.enemies[i];
+                
+                // Direction to base
+                const dx = CONFIG.basePosition.x - enemy.x;
+                const dy = CONFIG.basePosition.y - enemy.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < CONFIG.baseRadius + 10) {
+                    // Reached base - Game Over placeholder
+                    state.enemies.splice(i, 1);
+                    continue;
+                }
 
-            // Ground Update (Disabled scrolling)
-            // state.groundX -= state.speed;
+                // Smooth movement toward base
+                enemy.x += (dx / dist) * CONFIG.enemySpeed;
+                enemy.y += (dy / dist) * CONFIG.enemySpeed;
 
-            // Clouds Update (Disabled scrolling)
-            if (state.clouds.length < 3 && Math.random() < 0.005) spawnCloud();
-            state.clouds.forEach((cloud, index) => {
-                // cloud.x -= cloud.speed;
-                if (cloud.x < -150) state.clouds.splice(index, 1);
-            });
+                // Wiggle effect (perpendicular to movement)
+                enemy.wiggleAngle += CONFIG.wiggleFrequency;
+                enemy.renderX = enemy.x + Math.sin(enemy.wiggleAngle) * CONFIG.wiggleAmplitude;
+                enemy.renderY = enemy.y + Math.cos(enemy.wiggleAngle) * CONFIG.wiggleAmplitude;
+            }
 
-            // Bullets Update
+            // Update Bullets
             for (let i = state.bullets.length - 1; i >= 0; i--) {
-                state.bullets[i].x -= CONFIG.bulletSpeed;
-                if (state.bullets[i].x < -50) {
+                const bullet = state.bullets[i];
+                
+                // Move in fixed direction
+                bullet.x += bullet.vx * CONFIG.bulletSpeed;
+                bullet.y += bullet.vy * CONFIG.bulletSpeed;
+
+                // Collision Check (Simple distance-based for circles/boxes)
+                let hit = false;
+                for (let j = state.enemies.length - 1; j >= 0; j--) {
+                    const enemy = state.enemies[j];
+                    const dx = bullet.x - enemy.renderX;
+                    const dy = bullet.y - enemy.renderY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < 20) {
+                        state.enemies.splice(j, 1);
+                        hit = true;
+                        RetroAudio.play('hit');
+                        break;
+                    }
+                }
+
+                if (hit || bullet.y < -50 || bullet.x < -50 || bullet.x > els.canvas.width + 50 || bullet.y > els.canvas.height + 50) {
                     state.bullets.splice(i, 1);
                 }
             }
 
-            // Dino Enemy Lifecycle
-            if (state.dinoImg.complete && state.bulletImg.complete) {
-                // Dino Spawning
-                if (!state.isStageTransitioning) {
-                    state.dinoSpawnTimer += deltaTime;
-                    if (state.dinoSpawnTimer > CONFIG.dinoSpawnRate) {
-                        state.dinoSpawnTimer = 0;
-                        const dHeight = state.dinoImg.height * CONFIG.dinoScale;
-                        const groundScale = 0.125;
-                        const gH = state.groundImg.height * groundScale;
-                        const dy = els.canvas.height - gH - dHeight + 8; // align with ground
-
-                        state.enemies.push({
-                            x: -50, // spawn offscreen left
-                            y: dy,
-                            hp: CONFIG.dinoMaxHp,
-                            frame: 1, // Start on the 2nd image (index 1)
-                            frameTimer: 0
-                        });
-                    }
-                }
-
-                // Dino Update & Collision Logic
-                const bWidth = state.bulletImg.width * 2;
-                const bHeight = state.bulletImg.height * 2;
-                const sWidth = state.dinoImg.width / 3;
-                const dWidth = sWidth * CONFIG.dinoScale;
-                const dHeight = state.dinoImg.height * CONFIG.dinoScale;
-
-                for (let dIndex = state.enemies.length - 1; dIndex >= 0; dIndex--) {
-                    const dino = state.enemies[dIndex];
-
-                    // Movement
-                    dino.x += CONFIG.dinoSpeed;
-
-                    // Animation
-                    dino.frameTimer += deltaTime;
-                    if (dino.frameTimer > 150) { // toggle frame every 150ms
-                        dino.frameTimer = 0;
-                        dino.frame = dino.frame === 1 ? 2 : 1;
-                    }
-
-                    // Collision Check
-                    for (let bIndex = state.bullets.length - 1; bIndex >= 0; bIndex--) {
-                        const bullet = state.bullets[bIndex];
-                        const hitMargin = 10;
-                        if (bullet.x < dino.x + dWidth - hitMargin &&
-                            bullet.x + bWidth > dino.x + hitMargin &&
-                            bullet.y < dino.y + dHeight - hitMargin &&
-                            bullet.y + bHeight > dino.y + hitMargin) {
-
-                            dino.hp -= CONFIG.bulletDamage;
-                            state.bullets.splice(bIndex, 1); // Bullet destroyed
-                            RetroAudio.play('hit');
-                        }
-                    }
-
-                    // Removal Conditons
-                    if (dino.hp <= 0 || dino.x > els.canvas.width + 100) {
-                        state.enemies.splice(dIndex, 1);
-                    }
-                }
-            }
-
-            // Render
+            // --- Render ---
             const ctx = els.ctx;
             const canvas = els.canvas;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Bullets
-            if (state.bulletImg.complete) {
-                state.bullets.forEach(bullet => {
-                    ctx.drawImage(state.bulletImg, bullet.x, bullet.y, state.bulletImg.width * 2, state.bulletImg.height * 2);
-                });
-            }
+            // Draw Base
+            ctx.beginPath();
+            ctx.arc(CONFIG.basePosition.x, CONFIG.basePosition.y, CONFIG.baseRadius, 0, Math.PI * 2);
+            ctx.fillStyle = '#4f46e5';
+            ctx.fill();
+            ctx.closePath();
 
-            // Clouds
-            if (state.cloudImg.complete) {
-                const fw = state.cloudImg.width / 2;
-                const fh = state.cloudImg.height;
-                const scale = 0.25; // Scaled to 25% as requested
-                state.clouds.forEach(cloud => {
-                    ctx.drawImage(
-                        state.cloudImg,
-                        cloud.type * fw, 0, fw, fh,
-                        cloud.x, cloud.y, fw * scale, fh * scale
-                    );
-                });
-            }
+            // Draw Enemies (Boxes)
+            ctx.fillStyle = '#ef4444'; // Red for enemies
+            state.enemies.forEach(enemy => {
+                ctx.save();
+                ctx.translate(enemy.renderX, enemy.renderY);
+                ctx.fillRect(-CONFIG.enemySize/2, -CONFIG.enemySize/2, CONFIG.enemySize, CONFIG.enemySize);
+                ctx.restore();
+            });
 
-            // Ground
-            if (state.groundImg.complete) {
-                const scale = 0.125;
-                const sw = state.groundImg.width;
-                const sh = state.groundImg.height;
-                const dw = sw * scale;
-                const dh = sh * scale;
-
-                let startX = state.groundX % dw;
-                if (startX > 0) startX -= dw;
-
-                for (let x = startX; x < canvas.width; x += dw) {
-                    ctx.drawImage(state.groundImg, 0, 0, sw, sh, x, canvas.height - dh, dw, dh);
-                }
-            }
-
-            // Enemy Dinos Render
-            if (state.dinoImg.complete) {
-                const sWidth = state.dinoImg.width / 3;
-                const sHeight = state.dinoImg.height;
-                const dw = sWidth * CONFIG.dinoScale;
-                const dh = sHeight * CONFIG.dinoScale;
-
-                state.enemies.forEach(dino => {
-                    ctx.drawImage(
-                        state.dinoImg,
-                        dino.frame * sWidth, 0, sWidth, sHeight,
-                        dino.x, dino.y, dw, dh
-                    );
-                });
-            }
-
-            // Cat Character (Right Side)
-            if (state.catImg.complete) {
-                const scale = CONFIG.catScale;
-                const dw = state.catImg.width * scale;
-                const dh = state.catImg.height * scale;
-
-                // Position at the right end of the canvas
-                const dx = canvas.width - dw - 50;
-
-                // Align with ground
-                const groundScale = 0.125;
-                const gH = state.groundImg.height * groundScale;
-                const dy = canvas.height - gH - dh + 8;
-
-                ctx.drawImage(state.catImg, dx, dy, dw, dh);
-            }
+            // Draw Bullets
+            ctx.fillStyle = '#fbbf24'; // Amber for bullets
+            state.bullets.forEach(bullet => {
+                ctx.beginPath();
+                ctx.arc(bullet.x, bullet.y, 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
 
             // Timer Update
             if (state.timerActive && state.isPlaying && !state.isStageTransitioning) {
@@ -1306,9 +1215,17 @@
             let word;
 
             if (!isRecall) {
-                word = state.typingStage === 'en' ? state.currentWord.word : state.currentWord.meaning;
+                if (state.typingStage === 'en') {
+                    word = state.currentWord.word;
+                    els.meaningDisplay.innerText = "";
+                } else {
+                    word = state.currentWord.meaning;
+                    els.meaningDisplay.innerText = state.currentWord.word;
+                    els.meaningDisplay.style.color = '#94a3b8'; // Gray hint
+                }
             } else {
                 els.meaningDisplay.innerText = state.currentWord.meaning;
+                els.meaningDisplay.style.color = 'var(--primary)';
                 word = state.currentWord.word;
             }
 
@@ -1366,8 +1283,7 @@
         els.input.addEventListener('input', () => {
             if (state.typingStage === 'ko') return;
             const isIncrease = els.input.value.length > state.lastInputLength;
-            const correct = handleTyping();
-            if (correct && isIncrease) spawnBullet();
+            if (handleTyping() && isIncrease) spawnBullet();
             state.lastInputLength = els.input.value.length;
         });
 
@@ -1423,6 +1339,8 @@
                         nextWord();
                     }, 1000);
                     RetroAudio.play('correct');
+                    spawnRadialBullets(); // Bonus shot!
+                    return false; // Prevent targeted bullet on word completion
 
                     // Dino Jump Trigger
                     if (!state.isJumping) {
@@ -1483,37 +1401,84 @@
             return isCorrect;
         }
 
-        function spawnBullet() {
-            if (!state.catImg.complete) return;
+        function spawnEnemy() {
+            const side = Math.floor(Math.random() * 3); // 0: Top, 1: Left, 2: Right
+            let x, y;
+            if (side === 0) {
+                x = Math.random() * els.canvas.width;
+                y = -CONFIG.enemySize;
+            } else if (side === 1) {
+                x = -CONFIG.enemySize;
+                y = Math.random() * (els.canvas.height / 2);
+            } else {
+                x = els.canvas.width + CONFIG.enemySize;
+                y = Math.random() * (els.canvas.height / 2);
+            }
 
-            const scale = CONFIG.catScale;
-            const dw = state.catImg.width * scale;
-            const dh = state.catImg.height * scale;
+            state.enemies.push({
+                x: x,
+                y: y,
+                renderX: x,
+                renderY: y,
+                wiggleAngle: Math.random() * Math.PI * 2,
+                hp: 1
+            });
+        }
 
-            const dx = els.canvas.width - dw - 50;
-            const groundScale = 0.125;
-            const gH = state.groundImg.height * groundScale;
-            const dy = els.canvas.height - gH - dh + 8;
+        function spawnBullet(customDir = null) {
+            let vx = 0;
+            let vy = -1;
 
-            // Spawn from the gun tip (roughly center-left of the cat character)
-            // Raised by 15px as requested
+            if (customDir) {
+                vx = customDir.vx;
+                vy = customDir.vy;
+            } else {
+                // Standard targeting logic
+                let target = null;
+                let minDist = Infinity;
+                state.enemies.forEach(enemy => {
+                    const dx = CONFIG.basePosition.x - enemy.x;
+                    const dy = CONFIG.basePosition.y - enemy.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        target = enemy;
+                    }
+                });
+
+                if (target) {
+                    const dx = target.renderX - CONFIG.basePosition.x;
+                    const dy = target.renderY - (CONFIG.basePosition.y - 10);
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    vx = dx / dist;
+                    vy = dy / dist;
+                }
+            }
+
             state.bullets.push({
-                x: dx + 10,
-                y: dy + dh * 0.45 - 12
+                x: CONFIG.basePosition.x,
+                y: CONFIG.basePosition.y - 10,
+                vx: vx,
+                vy: vy
             });
 
-            // Small muzzle flash effect can be added later, for now just the bullet
             RetroAudio.play('shoot');
         }
 
-        function spawnCloud(initialX = null) {
-            const fw = state.cloudImg.width / 2;
-            state.clouds.push({
-                x: initialX !== null ? initialX : els.canvas.width + 100,
-                y: Math.random() * 80 + 20,
-                type: Math.random() < 0.5 ? 0 : 1,
-                speed: 0.3 // Standardized slow speed
+        function spawnRadialBullets() {
+            const angles = [60, 75, 90, 105, 120];
+            
+            angles.forEach(deg => {
+                const rad = (deg * Math.PI) / 180;
+                spawnBullet({
+                    vx: Math.cos(rad),
+                    vy: -Math.sin(rad) // Mirror Y for upward direction on screen
+                });
             });
+        }
+
+        function spawnCloud(initialX = null) {
+            // ... (legacy cloud logic kept but unused)
         }
 
         function speak(text) {
