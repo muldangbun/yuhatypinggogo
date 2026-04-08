@@ -235,6 +235,166 @@
     "beside": {
       "meaning": "~옆에",
       "chapter": 6
+    },
+    "between": {
+      "meaning": "~사이에",
+      "chapter": 7
+    },
+    "bicycle": {
+      "meaning": "자전거",
+      "chapter": 7
+    },
+    "big": {
+      "meaning": "큰",
+      "chapter": 7
+    },
+    "bird": {
+      "meaning": "새",
+      "chapter": 7
+    },
+    "birthday": {
+      "meaning": "생일",
+      "chapter": 7
+    },
+    "black": {
+      "meaning": "검은색",
+      "chapter": 7
+    },
+    "blow": {
+      "meaning": "불다",
+      "chapter": 7
+    },
+    "blue": {
+      "meaning": "파란색",
+      "chapter": 7
+    },
+    "board": {
+      "meaning": "판자 게시판",
+      "chapter": 7
+    },
+    "boat": {
+      "meaning": "배",
+      "chapter": 7
+    },
+    "body": {
+      "meaning": "몸",
+      "chapter": 8
+    },
+    "book": {
+      "meaning": "책",
+      "chapter": 8
+    },
+    "bottle": {
+      "meaning": "병",
+      "chapter": 8
+    },
+    "bowl": {
+      "meaning": "그릇",
+      "chapter": 8
+    },
+    "box": {
+      "meaning": "상자",
+      "chapter": 8
+    },
+    "boy": {
+      "meaning": "소년",
+      "chapter": 8
+    },
+    "bread": {
+      "meaning": "빵",
+      "chapter": 8
+    },
+    "break": {
+      "meaning": "깨뜨리다 부수다",
+      "chapter": 8
+    },
+    "breakfast": {
+      "meaning": "아침식사",
+      "chapter": 8
+    },
+    "bridge": {
+      "meaning": "다리",
+      "chapter": 8
+    },
+    "bright": {
+      "meaning": "밝은",
+      "chapter": 9
+    },
+    "bring": {
+      "meaning": "가져오다 데려오다",
+      "chapter": 9
+    },
+    "brother": {
+      "meaning": "남자형제",
+      "chapter": 9
+    },
+    "brown": {
+      "meaning": "갈색",
+      "chapter": 9
+    },
+    "brush": {
+      "meaning": "솔 빗",
+      "chapter": 9
+    },
+    "build": {
+      "meaning": "건설하다 짓다",
+      "chapter": 9
+    },
+    "burn": {
+      "meaning": "불타다",
+      "chapter": 9
+    },
+    "bus": {
+      "meaning": "버스",
+      "chapter": 9
+    },
+    "busy": {
+      "meaning": "바쁜",
+      "chapter": 9
+    },
+    "but": {
+      "meaning": "그러나",
+      "chapter": 9
+    },
+    "butter": {
+      "meaning": "버터",
+      "chapter": 10
+    },
+    "button": {
+      "meaning": "단추 버튼",
+      "chapter": 10
+    },
+    "buy": {
+      "meaning": "사다",
+      "chapter": 10
+    },
+    "by": {
+      "meaning": "~에 의하여 ~옆에",
+      "chapter": 10
+    },
+    "bye": {
+      "meaning": "안녕",
+      "chapter": 10
+    },
+    "calendar": {
+      "meaning": "달력",
+      "chapter": 10
+    },
+    "cake": {
+      "meaning": "케이크",
+      "chapter": 10
+    },
+    "call": {
+      "meaning": "부르다 전화하다",
+      "chapter": 10
+    },
+    "camera": {
+      "meaning": "카메라",
+      "chapter": 10
+    },
+    "camp": {
+      "meaning": "야영지 야영하다",
+      "chapter": 10
     }
   }
 }
