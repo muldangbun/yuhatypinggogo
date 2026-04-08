@@ -195,6 +195,46 @@
     "beautiful": {
       "meaning": "아름다운",
       "chapter": 5
+    },
+    "because": {
+      "meaning": "왜냐하면",
+      "chapter": 6
+    },
+    "become": {
+      "meaning": "~가 되다",
+      "chapter": 6
+    },
+    "bed": {
+      "meaning": "침대",
+      "chapter": 6
+    },
+    "before": {
+      "meaning": "~전에",
+      "chapter": 6
+    },
+    "begin": {
+      "meaning": "시작하다",
+      "chapter": 6
+    },
+    "behind": {
+      "meaning": "뒤에",
+      "chapter": 6
+    },
+    "bell": {
+      "meaning": "종 벨",
+      "chapter": 6
+    },
+    "below": {
+      "meaning": "아래에",
+      "chapter": 6
+    },
+    "bench": {
+      "meaning": "벤치",
+      "chapter": 6
+    },
+    "beside": {
+      "meaning": "~옆에",
+      "chapter": 6
     }
   }
 }
