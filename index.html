@@ -869,7 +869,8 @@
             state.wordData = Object.keys(WORD_DATABASE).map(key => ({
                 word: key,
                 meaning: WORD_DATABASE[key].meaning,
-                chapter: WORD_DATABASE[key].chapter
+                chapter: WORD_DATABASE[key].chapter,
+                sentences: WORD_DATABASE[key].sentences
             }));
 
             // Get unique chapters for selection
@@ -941,10 +942,13 @@
             state.isJumping = false;
             state.dinoVelocityY = 0;
             state.lastTime = 0; // Reset loop timer for smooth start
+            state.currentSentenceCycle = 1;
+            state.currentLearnCycle = 1;
+            state.shownSentences = {};
 
             state.stages = [
                 { chapter: chap, type: 'learn' },
-                { chapter: chap, type: 'recall' }
+                { chapter: chap, type: 'sentence' }
             ];
 
             els.wordsCorrect.innerText = '0';
@@ -989,10 +993,9 @@
             els.stageDisplay.innerText = `CH ${chapText} ${typeText}`;
 
             if (currentStage.type === 'learn') {
-                state.timerValue = CONFIG.learnDuration;
-                state.timerActive = true;
-                els.timer.innerText = Math.ceil(state.timerValue / 1000);
-                els.timer.parentElement.classList.remove('hidden');
+                state.currentLearnCycle = 1;
+                state.timerActive = false;
+                els.timer.parentElement.classList.add('hidden');
             } else {
                 state.timerActive = false;
                 els.timer.parentElement.classList.add('hidden');
@@ -1128,8 +1131,13 @@
 
             if (state.stageWords.length === 0) {
                 const currentStage = state.stages[state.currentStageIndex];
-                if (currentStage.type === 'learn') {
-                    // Refill and reshuffle during learn stage to keep it going for 60s
+                if (currentStage.type === 'learn' && state.currentLearnCycle < 2) {
+                    state.currentLearnCycle++;
+                    state.stageWords = state.wordData
+                        .filter(w => w.chapter === currentStage.chapter)
+                        .sort(() => Math.random() - 0.5);
+                } else if (currentStage.type === 'sentence' && state.currentSentenceCycle < 2) {
+                    state.currentSentenceCycle++;
                     state.stageWords = state.wordData
                         .filter(w => w.chapter === currentStage.chapter)
                         .sort(() => Math.random() - 0.5);
@@ -1150,6 +1158,24 @@
             if (currentStage.type === 'learn') {
                 state.typingStage = 'en';
                 speak(state.currentWord.word);
+            } else if (currentStage.type === 'sentence') {
+                state.typingStage = 'sentence';
+                if (state.currentWord.sentences && state.currentWord.sentences.length > 0) {
+                    let availableIndices = state.currentWord.sentences.map((_, i) => i);
+                    if (state.shownSentences[state.currentWord.word] !== undefined) {
+                        availableIndices = availableIndices.filter(i => i !== state.shownSentences[state.currentWord.word]);
+                    }
+                    if (availableIndices.length === 0) availableIndices = [0];
+                    
+                    const pick = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+                    state.shownSentences[state.currentWord.word] = pick;
+                    state.currentSentence = state.currentWord.sentences[pick];
+                } else {
+                    state.currentSentence = { en: "_____", ko: state.currentWord.meaning, answer: state.currentWord.word };
+                }
+                state.recallTimer = setTimeout(() => {
+                    handleRecallTimeout();
+                }, state.recallTimeLimit);
             } else {
                 state.typingStage = 'recall'; // Custom type for recall
                 // Start 5-second timer for recall
@@ -1212,6 +1238,13 @@
         function renderWord() {
             const currentStage = state.stages[state.currentStageIndex];
             const isRecall = currentStage.type === 'recall';
+            const isSentence = currentStage.type === 'sentence';
+
+            if (isSentence && state.currentSentence) {
+                renderSentence();
+                return;
+            }
+
             let word;
 
             if (!isRecall) {
@@ -1248,7 +1281,48 @@
                     html += `<span>${isRecall ? '?' : word[i]}</span>`;
                 }
             }
+            els.wordDisplay.style.fontSize = ""; // Reset size
             els.wordDisplay.innerHTML = html;
+        }
+
+        function renderSentence() {
+            const sentence = state.currentSentence.en;
+            const answer = state.currentSentence.answer;
+            const typed = els.input.value;
+
+            els.meaningDisplay.innerText = state.currentSentence.ko;
+            els.meaningDisplay.style.color = 'var(--primary)';
+
+            let parts = sentence.split('_____');
+            let html = `<span style="font-size: 2rem; color: var(--text-dim);">${parts[0]}</span>`;
+
+            let blankHtml = '';
+            for (let i = 0; i < answer.length; i++) {
+                if (i < typed.length) {
+                    let isMismatch = typed[i] !== answer[i];
+                    blankHtml += `<span class="${isMismatch ? 'error' : 'correct'}">${answer[i]}</span>`;
+                } else if (i === typed.length) {
+                    blankHtml += `<span class="current" style="border-bottom: 3px solid var(--secondary); color: var(--text-main);">_</span>`;
+                } else {
+                    blankHtml += `<span style="color: var(--text-dim);">_</span>`;
+                }
+            }
+            html += `<span style="font-size: 2.8rem; margin: 0 10px; border-bottom: 3px solid var(--primary);">${blankHtml}</span>`;
+
+            if (parts.length > 1) {
+                html += `<span style="font-size: 2rem; color: var(--text-dim);">${parts[1]}</span>`;
+            }
+            html += `<span onclick="speakHint()" style="cursor: pointer; margin-left: 15px; font-size: 2rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" title="Listen to full sentence">🔊</span>`;
+
+            els.wordDisplay.style.fontSize = "2.5rem";
+            els.wordDisplay.innerHTML = html;
+        }
+
+        function speakHint() {
+            if (state.typingStage === 'sentence' && state.currentSentence) {
+                const fullSentence = state.currentSentence.en.replace('_____', state.currentSentence.answer);
+                speak(fullSentence);
+            }
         }
 
         els.input.addEventListener('keydown', (e) => {
@@ -1291,7 +1365,12 @@
             if (!state.isPlaying) return false;
             let isCorrect = true;
             const typed = els.input.value;
-            const target = (state.typingStage === 'en' || state.typingStage === 'recall') ? state.currentWord.word : state.currentWord.meaning;
+            let target;
+            if (state.typingStage === 'sentence' && state.currentSentence) {
+                target = state.currentSentence.answer;
+            } else {
+                target = (state.typingStage === 'en' || state.typingStage === 'recall') ? state.currentWord.word : state.currentWord.meaning;
+            }
             renderWord();
 
             if (state.koErrorTimer) {
@@ -1324,7 +1403,7 @@
                     els.input.classList.add('correct-flash');
                     setTimeout(() => els.input.classList.remove('correct-flash'), 150);
 
-                    if (state.typingStage === 'recall') {
+                    if (state.typingStage === 'recall' || state.typingStage === 'sentence') {
                         speak(state.currentWord.word);
                     }
 
@@ -1349,7 +1428,7 @@
                     }
                 }
             } else if (typed.length > 0) {
-                if (state.typingStage === 'en' || state.typingStage === 'recall') {
+                if (state.typingStage === 'en' || state.typingStage === 'recall' || state.typingStage === 'sentence') {
                     if (!target.startsWith(typed)) {
                         isCorrect = false;
                         state.isErrorState = true;
