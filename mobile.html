@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <!-- Disable zooming on mobile to prevent virtual keyboard popups and layout breaks -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Dino Lex - Mobile Mode</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary: #818cf8;
@@ -20,7 +22,7 @@
             --text-dim: #94a3b8;
             --error: #f87171;
             --success: #34d399;
-            
+
             --key-bg: #334155;
             --key-shadow: 0 4px 0 #1e293b;
             --key-active: #475569;
@@ -29,11 +31,16 @@
             --key-special-shadow: 0 4px 0 #0f172a;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
 
         body {
             background-color: var(--background);
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 90%, rgba(219, 39, 119, 0.05) 0%, transparent 40%);
             color: var(--text-main);
@@ -56,7 +63,7 @@
             align-items: center;
             background: var(--surface);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             z-index: 10;
         }
 
@@ -79,8 +86,8 @@
             padding: 5px 10px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .stat-label {
@@ -117,9 +124,19 @@
             word-break: break-all;
         }
 
-        #word-display span.correct { color: var(--primary); }
-        #word-display span.current { border-bottom: 4px solid var(--secondary); color: var(--text-main); }
-        #word-display span.error { color: var(--error); text-decoration: underline red; }
+        #word-display span.correct {
+            color: var(--primary);
+        }
+
+        #word-display span.current {
+            border-bottom: 4px solid var(--secondary);
+            color: var(--text-main);
+        }
+
+        #word-display span.error {
+            color: var(--error);
+            text-decoration: underline red;
+        }
 
         #meaning-display {
             font-size: 1.8rem;
@@ -141,11 +158,11 @@
             justify-content: center;
             font-size: 1.5rem;
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
             color: var(--text-main);
             transition: all 0.2s;
         }
-        
+
         .fake-input.correct-flash {
             background: rgba(16, 185, 129, 0.2);
             border-color: var(--success);
@@ -169,11 +186,24 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
         }
-        .shake { animation: shake 0.2s ease-in-out; }
+
+        .shake {
+            animation: shake 0.2s ease-in-out;
+        }
 
         /* --- Overlays (Start/Clear screen) --- */
         .overlay {
@@ -235,6 +265,7 @@
             color: var(--text-dim);
             font-family: inherit;
         }
+
         .btn-mode.active {
             background: var(--primary);
             border-color: var(--primary);
@@ -278,7 +309,8 @@
             transition: background 0.05s;
         }
 
-        .key:active, .key.pressed {
+        .key:active,
+        .key.pressed {
             background: var(--key-active);
             box-shadow: var(--key-active-shadow);
             transform: translateY(4px);
@@ -292,7 +324,8 @@
             font-size: 1.2rem;
         }
 
-        .key.special:active, .key.special.pressed {
+        .key.special:active,
+        .key.special.pressed {
             background: #94a3b8;
             box-shadow: var(--key-active-shadow);
         }
@@ -300,15 +333,20 @@
         .keyboard-container {
             display: none;
         }
+
         .keyboard-container.active {
             display: flex;
             flex-direction: column;
         }
-        
+
         /* Layout specific rows */
-        .kb-row:nth-child(2) { padding: 0 10%; }
-        .kb-row:nth-child(3) { padding: 0 1%; }
-        
+        .kb-row:nth-child(2) {
+            padding: 0 10%;
+        }
+
+        .kb-row:nth-child(3) {
+            padding: 0 1%;
+        }
     </style>
 </head>
 
@@ -342,7 +380,7 @@
 
     <!-- Virtual Keyboard Area -->
     <div class="keyboard-area">
-        
+
         <!-- English QWERTY -->
         <div id="kb-en" class="keyboard-container active">
             <div class="kb-row">
@@ -380,7 +418,9 @@
                 <button class="key special" data-key="Backspace">⌫</button>
             </div>
             <div class="kb-row">
-                <button class="key special spacebar" style="max-width: none; flex: 2; font-size: 1.1rem; text-transform: lowercase; color: var(--text-dim);" data-key=" ">space</button>
+                <button class="key special spacebar"
+                    style="max-width: none; flex: 2; font-size: 1.1rem; text-transform: lowercase; color: var(--text-dim);"
+                    data-key=" ">space</button>
             </div>
         </div>
 
@@ -422,7 +462,9 @@
                 <button class="key special" data-key="Backspace">⌫</button>
             </div>
             <div class="kb-row">
-                <button class="key special spacebar" style="max-width: none; flex: 2; font-size: 1.1rem; color: var(--text-dim);" data-key=" ">간격</button>
+                <button class="key special spacebar"
+                    style="max-width: none; flex: 2; font-size: 1.1rem; color: var(--text-dim);"
+                    data-key=" ">간격</button>
             </div>
         </div>
     </div>
@@ -446,7 +488,8 @@
         <h1 style="font-size: 3.5rem; color: var(--primary); margin-bottom: 10px;">CLEAR!</h1>
         <p id="final-stats-text" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 30px;">Words: 0</p>
         <button class="btn-primary" onclick="startGame()" style="margin-bottom: 15px;">PLAY AGAIN</button>
-        <button class="btn-primary" onclick="location.reload()" style="background: var(--text-dim); box-shadow: none; margin-top: 0;">MENU</button>
+        <button class="btn-primary" onclick="location.reload()"
+            style="background: var(--text-dim); box-shadow: none; margin-top: 0;">MENU</button>
     </div>
 
     <script>
@@ -551,7 +594,7 @@
                 const osc = this.ctx.createOscillator();
                 const gain = this.ctx.createGain();
                 osc.connect(gain); gain.connect(this.ctx.destination);
-                
+
                 if (type === 'correct') {
                     const notes = [523.25, 659.25, 783.99];
                     notes.forEach((freq, i) => {
@@ -611,17 +654,17 @@
                     const rawData = await response.json();
                     WORD_DATABASE = rawData["시트1"];
                 }
-            } catch(e) { }
+            } catch (e) { }
 
             state.wordData = Object.keys(WORD_DATABASE).map(key => ({
                 word: key, meaning: WORD_DATABASE[key].meaning, chapter: WORD_DATABASE[key].chapter
             }));
-            state.chapters = [...new Set(state.wordData.map(w => w.chapter))].sort((a,b)=>a-b);
+            state.chapters = [...new Set(state.wordData.map(w => w.chapter))].sort((a, b) => a - b);
             renderChapterSelection();
 
             // Bind Keyboard
             document.querySelectorAll('.key').forEach(btn => {
-                btn.addEventListener('touchstart', (e) => { e.preventDefault(); handleKey(btn); }, {passive: false});
+                btn.addEventListener('touchstart', (e) => { e.preventDefault(); handleKey(btn); }, { passive: false });
                 btn.addEventListener('mousedown', (e) => { e.preventDefault(); handleKey(btn); });
             });
         }
@@ -646,14 +689,14 @@
             const chap = state.selectedChapter;
             state.wordsCorrect = 0; state.combo = 0; state.currentStageIndex = 0;
             state.stages = [{ chapter: chap, type: 'learn' }, { chapter: chap, type: 'recall' }];
-            
+
             els.wordsCount.innerText = '0';
             els.combo.classList.remove('active');
             els.startScreen.classList.add('hidden');
             els.gameOverScreen.classList.add('hidden');
             els.stageClearScreen.classList.add('hidden');
             state.isPlaying = true;
-            
+
             if (state.timerLoop) clearInterval(state.timerLoop);
             state.timerLoop = setInterval(updateTimerTick, 1000);
 
@@ -671,7 +714,7 @@
             const currentStage = state.stages[state.currentStageIndex];
             state.stageWords = state.wordData.filter(w => w.chapter === currentStage.chapter).sort(() => Math.random() - 0.5);
             els.stageClearScreen.classList.add('hidden');
-            
+
             els.stageDisplay.innerText = `${currentStage.chapter} ${currentStage.type.toUpperCase()}`;
             if (currentStage.type === 'learn') {
                 state.timerValue = 60000;
@@ -703,9 +746,19 @@
             if (currentStage.type === 'learn') {
                 state.typingStage = 'en';
                 speak(state.currentWord.word);
+            } else if (currentStage.type === 'sentence') {
+                state.typingStage = 'sentence';
+                // Pick one random sentence from the word's sentences
+                if (state.currentWord.sentences && state.currentWord.sentences.length > 0) {
+                    state.currentSentence = state.currentWord.sentences[Math.floor(Math.random() * state.currentWord.sentences.length)];
+                } else {
+                    // Fallback to word if no sentences exist
+                    state.currentSentence = { en: "_____", ko: state.currentWord.meaning, answer: state.currentWord.word };
+                }
+                state.recallTimer = setTimeout(handleRecallTimeout, 20000);
             } else {
                 state.typingStage = 'recall';
-                state.recallTimer = setTimeout(handleRecallTimeout, 5000);
+                state.recallTimer = setTimeout(handleRecallTimeout, 10000);
             }
 
             state.rawInput = "";
@@ -720,7 +773,7 @@
             els.wordDisplay.classList.add('shake');
             setTimeout(() => els.wordDisplay.classList.remove('shake'), 200);
             state.combo = 0; els.combo.classList.remove('active');
-            
+
             els.wordDisplay.innerHTML = `<span class="error">${state.currentWord.word}</span>`;
             els.meaningDisplay.innerHTML = `<span style="color: var(--primary);">Try again!</span>`;
             state.stageWords.unshift(state.currentWord);
@@ -791,8 +844,8 @@
 
         /* Virtual Keyboard Input Handler */
         const shiftMap = {
-            'ㄱ':'ㄲ', 'ㄷ':'ㄸ', 'ㅂ':'ㅃ', 'ㅅ':'ㅆ', 'ㅈ':'ㅉ',
-            'q':'Q', 'w':'W', 'e':'E', 'r':'R', 't':'T', 'o':'O', 'p':'P' // mapping back to Hangul alphabet if needed
+            'ㄱ': 'ㄲ', 'ㄷ': 'ㄸ', 'ㅂ': 'ㅃ', 'ㅅ': 'ㅆ', 'ㅈ': 'ㅉ',
+            'q': 'Q', 'w': 'W', 'e': 'E', 'r': 'R', 't': 'T', 'o': 'O', 'p': 'P' // mapping back to Hangul alphabet if needed
         };
 
         function handleKey(btn) {
@@ -802,7 +855,7 @@
 
             RetroAudio.play('tap');
             let key = btn.getAttribute('data-key');
-            
+
             if (key === 'Shift') {
                 state.isShiftActive = !state.isShiftActive;
                 btn.style.background = state.isShiftActive ? 'var(--primary)' : '';
@@ -825,7 +878,7 @@
                 if (state.typingStage === 'ko') {
                     // map visual korean button keys back to internal 'alphabet' keys for Hangul.compose
                     // the easiest way is to push the mapped english alphabet that corresponds to the korean key, or modify compose
-                    const revMap = Object.entries(Hangul.alphabet).find(([k,v]) => v === key);
+                    const revMap = Object.entries(Hangul.alphabet).find(([k, v]) => v === key);
                     state.rawInput += revMap ? revMap[0] : key;
                 } else {
                     state.rawInput += key.toLowerCase();
@@ -863,10 +916,10 @@
                     els.combo.innerText = `+${state.combo}`; els.combo.classList.add('active');
                     els.fakeInput.classList.add('correct-flash');
                     setTimeout(() => els.fakeInput.classList.remove('correct-flash'), 200);
-                    
+
                     if (state.typingStage === 'recall') speak(state.currentWord.word);
                     RetroAudio.play('correct');
-                    
+
                     state.isPlaying = false; // pause slightly
                     setTimeout(() => {
                         state.isPlaying = true;
@@ -910,4 +963,5 @@
         init();
     </script>
 </body>
+
 </html>

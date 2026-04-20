@@ -628,7 +628,7 @@
         const state = {
             isPlaying: false, combo: 0, selectedChapter: 1, chapters: [], stages: [],
             currentStageIndex: 0, stageWords: [], recallTimer: null,
-            wordData: [], currentWord: null, typingStage: 'en', wordsCorrect: 0,
+            wordData: [], currentWord: null, currentSentence: null, typingStage: 'en', wordsCorrect: 0,
             rawInput: "", // Stores alphabet sequence for Hangul or plain EN string
             timerValue: 0, timerLoop: null,
             isShiftActive: false,
@@ -693,7 +693,7 @@
             RetroAudio.init();
             const chap = state.selectedChapter;
             state.wordsCorrect = 0; state.combo = 0; state.currentStageIndex = 0;
-            state.stages = [{ chapter: chap, type: 'learn' }, { chapter: chap, type: 'recall' }];
+            state.stages = [{ chapter: chap, type: 'learn' }, { chapter: chap, type: 'sentence' }];
 
             els.wordsCount.innerText = '0';
             els.combo.classList.remove('active');
@@ -751,6 +751,16 @@
             if (currentStage.type === 'learn') {
                 state.typingStage = 'en';
                 speak(state.currentWord.word);
+            } else if (currentStage.type === 'sentence') {
+                state.typingStage = 'sentence';
+                // Pick one random sentence from the word's sentences
+                if (state.currentWord.sentences && state.currentWord.sentences.length > 0) {
+                    state.currentSentence = state.currentWord.sentences[Math.floor(Math.random() * state.currentWord.sentences.length)];
+                } else {
+                    // Fallback to word if no sentences exist
+                    state.currentSentence = { en: "_____", ko: state.currentWord.meaning, answer: state.currentWord.word };
+                }
+                state.recallTimer = setTimeout(handleRecallTimeout, 20000);
             } else {
                 state.typingStage = 'recall';
                 state.recallTimer = setTimeout(handleRecallTimeout, 10000);
@@ -807,7 +817,15 @@
         }
 
         function renderWord() {
-            const isRecall = state.stages[state.currentStageIndex].type === 'recall';
+            const stageType = state.stages[state.currentStageIndex].type;
+            const isRecall = stageType === 'recall';
+            const isSentence = stageType === 'sentence';
+
+            if (isSentence && state.currentSentence) {
+                renderSentence();
+                return;
+            }
+
             let word;
             if (!isRecall) {
                 word = state.typingStage === 'en' ? state.currentWord.word : state.currentWord.meaning;
@@ -834,6 +852,40 @@
                     html += `<span>${isRecall ? '?' : word[i]}</span>`;
                 }
             }
+            els.wordDisplay.style.fontSize = "5rem"; // Reset size
+            els.wordDisplay.innerHTML = html;
+        }
+
+        function renderSentence() {
+            const sentence = state.currentSentence.en;
+            const answer = state.currentSentence.answer;
+            const typed = els.fakeInput.innerText;
+
+            els.meaningDisplay.innerText = state.currentSentence.ko;
+
+            // Find where "_____" is and replace with current typing logic
+            let parts = sentence.split('_____');
+            let html = `<span style="font-size: 2rem; color: var(--text-dim);">${parts[0]}</span>`;
+
+            // The Blank area
+            let blankHtml = '';
+            for (let i = 0; i < answer.length; i++) {
+                if (i < typed.length) {
+                    let isMismatch = typed[i] !== answer[i];
+                    blankHtml += `<span class="${isMismatch ? 'error' : 'correct'}">${answer[i]}</span>`;
+                } else if (i === typed.length) {
+                    blankHtml += `<span class="current" style="border-bottom: 3px solid var(--secondary); color: var(--text-main);">_</span>`;
+                } else {
+                    blankHtml += `<span style="color: var(--text-dim);">_</span>`;
+                }
+            }
+            html += `<span style="font-size: 2.8rem; margin: 0 10px; border-bottom: 3px solid var(--primary);">${blankHtml}</span>`;
+
+            if (parts.length > 1) {
+                html += `<span style="font-size: 2rem; color: var(--text-dim);">${parts[1]}</span>`;
+            }
+
+            els.wordDisplay.style.fontSize = "2rem"; // Smaller for sentences
             els.wordDisplay.innerHTML = html;
         }
 
@@ -892,7 +944,12 @@
 
         function checkAnswer() {
             const typed = els.fakeInput.innerText;
-            const target = (state.typingStage === 'en' || state.typingStage === 'recall') ? state.currentWord.word : state.currentWord.meaning;
+            let target;
+            if (state.typingStage === 'sentence' && state.currentSentence) {
+                target = state.currentSentence.answer;
+            } else {
+                target = (state.typingStage === 'en' || state.typingStage === 'recall') ? state.currentWord.word : state.currentWord.meaning;
+            }
             renderWord();
 
             if (typed === target) {
@@ -984,7 +1041,7 @@
                     if (rev) targetDataKey = rev[0];
                 }
 
-                const kbContainer = state.typingStage === 'ko' ? document.getElementById('kb-ko') : document.getElementById('kb-en');
+                const kbContainer = (state.typingStage === 'ko') ? document.getElementById('kb-ko') : document.getElementById('kb-en');
                 const btn = kbContainer.querySelector(`.key[data-key="${targetDataKey}"]`);
                 if (btn) {
                     e.preventDefault();

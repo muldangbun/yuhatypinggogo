@@ -2,399 +2,1587 @@
   "시트1": {
     "about": {
       "meaning": "~에 대하여",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "Tell me _____ your family.",
+          "ko": "네 가족에 대해 말해줘.",
+          "answer": "about"
+        },
+        {
+          "en": "This book is _____ space.",
+          "ko": "이 책은 우주에 관한 것이다.",
+          "answer": "about"
+        }
+      ]
     },
     "across": {
       "meaning": "가로지르는",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "Walk _____ the street carefully.",
+          "ko": "길을 조심해서 건너렴.",
+          "answer": "across"
+        },
+        {
+          "en": "The bridge goes _____ the river.",
+          "ko": "그 다리는 강을 가로지른다.",
+          "answer": "across"
+        }
+      ]
     },
     "act": {
       "meaning": "행동하다",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "Think before you _____.",
+          "ko": "행동하기 전에 생각하렴.",
+          "answer": "act"
+        },
+        {
+          "en": "They _____ like heroes.",
+          "ko": "그들은 영웅처럼 행동한다.",
+          "answer": "act"
+        }
+      ]
     },
     "address": {
       "meaning": "주소",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "What is your home _____?",
+          "ko": "너의 집 주소가 뭐니?",
+          "answer": "address"
+        },
+        {
+          "en": "Please write your _____ here.",
+          "ko": "여기에 주소를 적어 주세요.",
+          "answer": "address"
+        }
+      ]
     },
     "afraid": {
       "meaning": "두려워하는",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "Don't be _____ of the dark.",
+          "ko": "어둠을 무서워하지 마렴.",
+          "answer": "afraid"
+        },
+        {
+          "en": "Are you _____ of snakes?",
+          "ko": "뱀이 무섭니?",
+          "answer": "afraid"
+        }
+      ]
     },
     "after": {
       "meaning": "~후에",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "Wash your hands _____ dinner.",
+          "ko": "저녁 식사 후에 손을 씻으렴.",
+          "answer": "after"
+        },
+        {
+          "en": "Spring comes _____ winter.",
+          "ko": "겨울 다음에는 봄이 온다.",
+          "answer": "after"
+        }
+      ]
     },
     "afternoon": {
       "meaning": "오후",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "See you this _____.",
+          "ko": "오늘 오후에 보자.",
+          "answer": "afternoon"
+        },
+        {
+          "en": "I play soccer in the _____.",
+          "ko": "나는 오후에 축구를 한다.",
+          "answer": "afternoon"
+        }
+      ]
     },
     "again": {
       "meaning": "다시",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "Read the book _____.",
+          "ko": "그 책을 다시 읽어보렴.",
+          "answer": "again"
+        },
+        {
+          "en": "Can you say that _____?",
+          "ko": "다시 말씀해 주실래요?",
+          "answer": "again"
+        }
+      ]
     },
     "age": {
       "meaning": "나이",
-      "chapter": 1
+      "chapter": 1,
+      "sentences": [
+        {
+          "en": "What is your _____?",
+          "ko": "나이가 어떻게 되니?",
+          "answer": "age"
+        },
+        {
+          "en": "I am ten years of _____.",
+          "ko": "나는 열 살이다.",
+          "answer": "age"
+        }
+      ]
     },
     "ago": {
       "meaning": "이전에",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "I saw him two days _____.",
+          "ko": "나는 이틀 전에 그를 봤다.",
+          "answer": "ago"
+        },
+        {
+          "en": "Long _____ there was a king.",
+          "ko": "오래전에 한 왕이 있었다.",
+          "answer": "ago"
+        }
+      ]
     },
     "air": {
       "meaning": "공기",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "We need fresh _____.",
+          "ko": "우리는 신선한 공기가 필요하다.",
+          "answer": "air"
+        },
+        {
+          "en": "Birds fly in the _____.",
+          "ko": "새들은 공중을 날아다닌다.",
+          "answer": "air"
+        }
+      ]
     },
     "airport": {
       "meaning": "공항",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "The plane is at the _____.",
+          "ko": "비행기가 공항에 있다.",
+          "answer": "airport"
+        },
+        {
+          "en": "We go to the _____ by taxi.",
+          "ko": "우리는 택시를 타고 공항에 간다.",
+          "answer": "airport"
+        }
+      ]
     },
     "album": {
       "meaning": "앨범",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "Look at my photo _____.",
+          "ko": "내 사진 앨범을 봐.",
+          "answer": "album"
+        },
+        {
+          "en": "Put the photo in the _____.",
+          "ko": "사진을 앨범에 넣어라.",
+          "answer": "album"
+        }
+      ]
     },
     "all": {
       "meaning": "모든 모두",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "Clean up _____ the toys.",
+          "ko": "장난감을 모두 치우렴.",
+          "answer": "all"
+        },
+        {
+          "en": "_____ the children are happy.",
+          "ko": "모든 아이들이 행복하다.",
+          "answer": "all"
+        }
+      ]
     },
     "along": {
       "meaning": "~을 따라서",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "Walk _____ the river.",
+          "ko": "강을 따라 걸으렴.",
+          "answer": "along"
+        },
+        {
+          "en": "Come _____ with us.",
+          "ko": "우리와 함께 가자.",
+          "answer": "along"
+        }
+      ]
     },
     "always": {
       "meaning": "항상",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "I _____ brush my teeth.",
+          "ko": "나는 항상 이를 닦는다.",
+          "answer": "always"
+        },
+        {
+          "en": "She is _____ kind to me.",
+          "ko": "그녀는 항상 나에게 친절하다.",
+          "answer": "always"
+        }
+      ]
     },
     "among": {
       "meaning": "~사이에",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "A wolf is _____ the sheep.",
+          "ko": "늑대가 양들 사이에 있다.",
+          "answer": "among"
+        },
+        {
+          "en": "He is popular _____ friends.",
+          "ko": "그는 친구들 사이에서 인기가 있다.",
+          "answer": "among"
+        }
+      ]
     },
     "and": {
       "meaning": "그리고",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "I like apples _____ bananas.",
+          "ko": "나는 사과와 바나나를 좋아한다.",
+          "answer": "and"
+        },
+        {
+          "en": "Tom _____ Jerry are friends.",
+          "ko": "톰과 제리는 친구다.",
+          "answer": "and"
+        }
+      ]
     },
     "angry": {
       "meaning": "화난",
-      "chapter": 2
+      "chapter": 2,
+      "sentences": [
+        {
+          "en": "He is _____ with me.",
+          "ko": "그는 나에게 화가 났다.",
+          "answer": "angry"
+        },
+        {
+          "en": "Don't be so _____.",
+          "ko": "그렇게 화내지 마렴.",
+          "answer": "angry"
+        }
+      ]
     },
     "animal": {
       "meaning": "동물",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "A lion is a wild _____.",
+          "ko": "사자는 야생 동물이다.",
+          "answer": "animal"
+        },
+        {
+          "en": "What is your favorite _____?",
+          "ko": "네가 가장 좋아하는 동물은 뭐니?",
+          "answer": "animal"
+        }
+      ]
     },
     "answer": {
       "meaning": "대답",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "I know the _____.",
+          "ko": "나는 정답을 알고 있다.",
+          "answer": "answer"
+        },
+        {
+          "en": "Please _____ the question.",
+          "ko": "질문에 대답해 주세요.",
+          "answer": "answer"
+        }
+      ]
     },
     "any": {
       "meaning": "어떤 아무런",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "Do you have _____ milk?",
+          "ko": "우유 좀 있니?",
+          "answer": "any"
+        },
+        {
+          "en": "I don't have _____ money.",
+          "ko": "나는 돈이 하나도 없다.",
+          "answer": "any"
+        }
+      ]
     },
     "apartment": {
       "meaning": "아파트",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "I live in a big _____.",
+          "ko": "나는 큰 아파트에 산다.",
+          "answer": "apartment"
+        },
+        {
+          "en": "This _____ has many floors.",
+          "ko": "이 아파트는 층수가 많다.",
+          "answer": "apartment"
+        }
+      ]
     },
     "apple": {
       "meaning": "사과",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "An _____ a day is good.",
+          "ko": "하루에 사과 한 알은 몸에 좋다.",
+          "answer": "apple"
+        },
+        {
+          "en": "The _____ is red and sweet.",
+          "ko": "그 사과는 빨갛고 달다.",
+          "answer": "apple"
+        }
+      ]
     },
     "arm": {
       "meaning": "팔",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "He has a strong _____.",
+          "ko": "그는 팔 힘이 세다.",
+          "answer": "arm"
+        },
+        {
+          "en": "Touch your right _____.",
+          "ko": "네 오른쪽 팔을 만져보렴.",
+          "answer": "arm"
+        }
+      ]
     },
     "around": {
       "meaning": "~주위에",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "Run _____ the field.",
+          "ko": "운동장 주위를 뛰렴.",
+          "answer": "around"
+        },
+        {
+          "en": "The Earth goes _____ the Sun.",
+          "ko": "지구는 태양 주위를 돈다.",
+          "answer": "around"
+        }
+      ]
     },
     "arrive": {
       "meaning": "도착하다",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "I _____ at school at eight.",
+          "ko": "나는 8시에 학교에 도착한다.",
+          "answer": "arrive"
+        },
+        {
+          "en": "The bus will _____ soon.",
+          "ko": "버스가 곧 도착할 것이다.",
+          "answer": "arrive"
+        }
+      ]
     },
     "as": {
       "meaning": "~로서",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "I am as tall _____ you.",
+          "ko": "나는 너만큼 키가 크다.",
+          "answer": "as"
+        },
+        {
+          "en": "Do _____ I say.",
+          "ko": "내가 말하는 대로 하렴.",
+          "answer": "as"
+        }
+      ]
     },
     "ask": {
       "meaning": "묻다",
-      "chapter": 3
+      "chapter": 3,
+      "sentences": [
+        {
+          "en": "_____ your teacher a question.",
+          "ko": "선생님께 질문을 하렴.",
+          "answer": "ask"
+        },
+        {
+          "en": "May I _____ for help?",
+          "ko": "도움을 좀 요청해도 될까요?",
+          "answer": "ask"
+        }
+      ]
     },
     "at": {
       "meaning": "~에",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "Look _____ the blackboard.",
+          "ko": "칠판을 보렴.",
+          "answer": "at"
+        },
+        {
+          "en": "I am _____ home now.",
+          "ko": "나는 지금 집에 있다.",
+          "answer": "at"
+        }
+      ]
     },
     "aunt": {
       "meaning": "이모 아주머니",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "My _____ lives in Seoul.",
+          "ko": "이모는 서울에 사신다.",
+          "answer": "aunt"
+        },
+        {
+          "en": "I love my _____ very much.",
+          "ko": "나는 고모를 매우 사랑한다.",
+          "answer": "aunt"
+        }
+      ]
     },
     "autumn": {
       "meaning": "가을",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "Leaves fall in _____.",
+          "ko": "가을에는 잎이 떨어진다.",
+          "answer": "autumn"
+        },
+        {
+          "en": "_____ is a beautiful season.",
+          "ko": "가을은 아름다운 계절이다.",
+          "answer": "autumn"
+        }
+      ]
     },
     "away": {
       "meaning": "떨어져",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "Go _____ from here.",
+          "ko": "여기서 멀리 가렴.",
+          "answer": "away"
+        },
+        {
+          "en": "Put your toys _____.",
+          "ko": "장난감을 치우렴.",
+          "answer": "away"
+        }
+      ]
     },
     "baby": {
       "meaning": "아기",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "The _____ is sleeping.",
+          "ko": "아기가 자고 있다.",
+          "answer": "baby"
+        },
+        {
+          "en": "Look at the cute _____.",
+          "ko": "저 귀여운 아기를 봐.",
+          "answer": "baby"
+        }
+      ]
     },
     "back": {
       "meaning": "뒤로",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "Come _____ soon.",
+          "ko": "곧 돌아오렴.",
+          "answer": "back"
+        },
+        {
+          "en": "My _____ hurts today.",
+          "ko": "오늘은 등이 아프다.",
+          "answer": "back"
+        }
+      ]
     },
     "bad": {
       "meaning": "나쁜",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "He has a _____ cold.",
+          "ko": "그는 독한 감기에 걸렸다.",
+          "answer": "bad"
+        },
+        {
+          "en": "Smoking is a _____ habit.",
+          "ko": "흡연은 나쁜 습관이다.",
+          "answer": "bad"
+        }
+      ]
     },
     "bag": {
       "meaning": "가방",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "My school _____ is heavy.",
+          "ko": "내 책가방은 무겁다.",
+          "answer": "bag"
+        },
+        {
+          "en": "Put it in your _____.",
+          "ko": "그것을 가방에 넣어라.",
+          "answer": "bag"
+        }
+      ]
     },
     "ball": {
       "meaning": "공",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "Kick the _____ hard.",
+          "ko": "공을 세게 차렴.",
+          "answer": "ball"
+        },
+        {
+          "en": "Throw me the _____.",
+          "ko": "나에게 공을 던져줘.",
+          "answer": "ball"
+        }
+      ]
     },
     "balloon": {
       "meaning": "풍선",
-      "chapter": 4
+      "chapter": 4,
+      "sentences": [
+        {
+          "en": "The _____ is flying away.",
+          "ko": "풍선이 날아간다.",
+          "answer": "balloon"
+        },
+        {
+          "en": "Blow up the red _____.",
+          "ko": "빨간 풍선을 불어라.",
+          "answer": "balloon"
+        }
+      ]
     },
     "banana": {
       "meaning": "바나나",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "I eat a _____ for breakfast.",
+          "ko": "나는 아침으로 바나나 한 개를 먹는다.",
+          "answer": "banana"
+        },
+        {
+          "en": "This _____ is very sweet.",
+          "ko": "이 바나나는 매우 달다.",
+          "answer": "banana"
+        }
+      ]
     },
     "band": {
       "meaning": "밴드 악단",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "I play in a school _____.",
+          "ko": "나는 학교 밴드에서 활동한다.",
+          "answer": "band"
+        },
+        {
+          "en": "The music _____ is great.",
+          "ko": "그 악단은 멋지다.",
+          "answer": "band"
+        }
+      ]
     },
     "bank": {
       "meaning": "은행",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "I save money in the _____.",
+          "ko": "나는 은행에 저금을 한다.",
+          "answer": "bank"
+        },
+        {
+          "en": "The _____ closes at four.",
+          "ko": "은행은 4시에 문을 닫는다.",
+          "answer": "bank"
+        }
+      ]
     },
     "base": {
       "meaning": "기초",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "The _____ of the mountain.",
+          "ko": "그 산의 기슭.",
+          "answer": "base"
+        },
+        {
+          "en": "Run to the next _____.",
+          "ko": "다음 베이스로 뛰렴.",
+          "answer": "base"
+        }
+      ]
     },
     "basket": {
       "meaning": "바구니",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "Put apples in the _____.",
+          "ko": "바구니에 사과를 담으렴.",
+          "answer": "basket"
+        },
+        {
+          "en": "A _____ full of eggs.",
+          "ko": "달걀이 가득 찬 바구니.",
+          "answer": "basket"
+        }
+      ]
     },
     "bath": {
       "meaning": "목욕",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "I take a _____ every day.",
+          "ko": "나는 매일 목욕을 한다.",
+          "answer": "bath"
+        },
+        {
+          "en": "The water for the _____ is hot.",
+          "ko": "목욕물이 뜨겁다.",
+          "answer": "bath"
+        }
+      ]
     },
     "be": {
       "meaning": "~이다",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "I want to _____ a teacher.",
+          "ko": "나는 선생님이 되고 싶다.",
+          "answer": "be"
+        },
+        {
+          "en": "_____ quiet in the library.",
+          "ko": "도서관에서는 조용히 하렴.",
+          "answer": "be"
+        }
+      ]
     },
     "beach": {
       "meaning": "해변",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "Let's go to the _____.",
+          "ko": "해변에 가자.",
+          "answer": "beach"
+        },
+        {
+          "en": "The sand on the _____ is white.",
+          "ko": "해변의 모래가 하얗다.",
+          "answer": "beach"
+        }
+      ]
     },
     "bear": {
       "meaning": "곰",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "Polar _____s live on ice.",
+          "ko": "북극곰은 얼음 위에서 산다.",
+          "answer": "bear"
+        },
+        {
+          "en": "The _____ likes honey.",
+          "ko": "그 곰은 꿀을 좋아한다.",
+          "answer": "bear"
+        }
+      ]
     },
     "beautiful": {
       "meaning": "아름다운",
-      "chapter": 5
+      "chapter": 5,
+      "sentences": [
+        {
+          "en": "The flowers are _____.",
+          "ko": "꽃들이 아름답다.",
+          "answer": "beautiful"
+        },
+        {
+          "en": "What a _____ day!",
+          "ko": "정말 아름다운 날이다!",
+          "answer": "beautiful"
+        }
+      ]
     },
     "because": {
       "meaning": "왜냐하면",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "I am happy _____ of you.",
+          "ko": "너 때문에 나는 행복하다.",
+          "answer": "because"
+        },
+        {
+          "en": "I cried _____ I was sad.",
+          "ko": "슬퍼서 울었다.",
+          "answer": "because"
+        }
+      ]
     },
     "become": {
       "meaning": "~가 되다",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "I want to _____ a doctor.",
+          "ko": "나는 의사가 되고 싶다.",
+          "answer": "become"
+        },
+        {
+          "en": "Caterpillars _____ butterflies.",
+          "ko": "애벌레는 나비가 된다.",
+          "answer": "become"
+        }
+      ]
     },
     "bed": {
       "meaning": "침대",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "Go to _____ early.",
+          "ko": "일찍 자렴.",
+          "answer": "bed"
+        },
+        {
+          "en": "My _____ is soft.",
+          "ko": "내 침대는 푹신하다.",
+          "answer": "bed"
+        }
+      ]
     },
     "before": {
       "meaning": "~전에",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "Wash hands _____ meals.",
+          "ko": "식사 전에 손을 씻으렴.",
+          "answer": "before"
+        },
+        {
+          "en": "I met him _____.",
+          "ko": "나는 그를 전에 만난 적이 있다.",
+          "answer": "before"
+        }
+      ]
     },
     "begin": {
       "meaning": "시작하다",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "Class _____s at nine.",
+          "ko": "수업은 9시에 시작한다.",
+          "answer": "begin"
+        },
+        {
+          "en": "Let's _____ the game.",
+          "ko": "게임을 시작하자.",
+          "answer": "begin"
+        }
+      ]
     },
     "behind": {
       "meaning": "뒤에",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "The cat is _____ the door.",
+          "ko": "고양이가 문 뒤에 있다.",
+          "answer": "behind"
+        },
+        {
+          "en": "Don't hide _____ the tree.",
+          "ko": "나무 뒤에 숨지 마렴.",
+          "answer": "behind"
+        }
+      ]
     },
     "bell": {
       "meaning": "종 벨",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "The school _____ rings.",
+          "ko": "학교 종이 울린다.",
+          "answer": "bell"
+        },
+        {
+          "en": "Ring the door _____.",
+          "ko": "초인종을 누르렴.",
+          "answer": "bell"
+        }
+      ]
     },
     "below": {
       "meaning": "아래에",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "See the picture _____.",
+          "ko": "아래 그림을 보세요.",
+          "answer": "below"
+        },
+        {
+          "en": "It is _____ zero degrees.",
+          "ko": "영하의 기온이다.",
+          "answer": "below"
+        }
+      ]
     },
     "bench": {
       "meaning": "벤치",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "Sit on the park _____.",
+          "ko": "공원 벤치에 앉으렴.",
+          "answer": "bench"
+        },
+        {
+          "en": "The _____ is made of wood.",
+          "ko": "그 벤치는 나무로 만들어졌다.",
+          "answer": "bench"
+        }
+      ]
     },
     "beside": {
       "meaning": "~옆에",
-      "chapter": 6
+      "chapter": 6,
+      "sentences": [
+        {
+          "en": "Sit _____ me.",
+          "ko": "내 옆에 앉으렴.",
+          "answer": "beside"
+        },
+        {
+          "en": "He is standing _____ the car.",
+          "ko": "그는 차 옆에 서 있다.",
+          "answer": "beside"
+        }
+      ]
     },
     "between": {
       "meaning": "~사이에",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "Pick a number _____ 1 and 10.",
+          "ko": "1에서 10 사이의 숫자를 골라보렴.",
+          "answer": "between"
+        },
+        {
+          "en": "He is sitting _____ his parents.",
+          "ko": "그는 부모님 사이에 앉아 있다.",
+          "answer": "between"
+        }
+      ]
     },
     "bicycle": {
       "meaning": "자전거",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "I ride a _____ to school.",
+          "ko": "나는 자전거를 타고 등교한다.",
+          "answer": "bicycle"
+        },
+        {
+          "en": "He has a new blue _____.",
+          "ko": "그는 새 파란색 자전거를 가지고 있다.",
+          "answer": "bicycle"
+        }
+      ]
     },
     "big": {
       "meaning": "큰",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "This is a _____ box.",
+          "ko": "이것은 큰 상자다.",
+          "answer": "big"
+        },
+        {
+          "en": "I want to be a _____ boy.",
+          "ko": "나는 큰 형이 되고 싶다.",
+          "answer": "big"
+        }
+      ]
     },
     "bird": {
       "meaning": "새",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "A _____ is singing.",
+          "ko": "새 한 마리가 노래하고 있다.",
+          "answer": "bird"
+        },
+        {
+          "en": "The _____ has colorful wings.",
+          "ko": "그 새는 알록달록한 날개를 가지고 있다.",
+          "answer": "bird"
+        }
+      ]
     },
     "birthday": {
       "meaning": "생일",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "Happy _____ to you!",
+          "ko": "생일 축하해!",
+          "answer": "birthday"
+        },
+        {
+          "en": "Today is my eighth _____.",
+          "ko": "오늘은 나의 여덟 번째 생일이다.",
+          "answer": "birthday"
+        }
+      ]
     },
     "black": {
       "meaning": "검은색",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "My cat is _____.",
+          "ko": "내 고양이는 검은색이다.",
+          "answer": "black"
+        },
+        {
+          "en": "I like the _____ hat.",
+          "ko": "나는 그 검은 모자가 마음에 든다.",
+          "answer": "black"
+        }
+      ]
     },
     "blow": {
       "meaning": "불다",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "_____ out the candles.",
+          "ko": "촛불을 끄렴.",
+          "answer": "blow"
+        },
+        {
+          "en": "The wind _____s hard.",
+          "ko": "바람이 세게 분다.",
+          "answer": "blow"
+        }
+      ]
     },
     "blue": {
       "meaning": "파란색",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "The sky is _____.",
+          "ko": "하늘이 파랗다.",
+          "answer": "blue"
+        },
+        {
+          "en": "I have a _____ pen.",
+          "ko": "나는 파란색 펜을 가지고 있다.",
+          "answer": "blue"
+        }
+      ]
     },
     "board": {
       "meaning": "판자 게시판",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "Write on the white _____.",
+          "ko": "화이트보드에 쓰렴.",
+          "answer": "board"
+        },
+        {
+          "en": "Check the notice _____.",
+          "ko": "게시판을 확인해 봐.",
+          "answer": "board"
+        }
+      ]
     },
     "boat": {
       "meaning": "배",
-      "chapter": 7
+      "chapter": 7,
+      "sentences": [
+        {
+          "en": "The _____ is on the lake.",
+          "ko": "배가 호수 위에 있다.",
+          "answer": "boat"
+        },
+        {
+          "en": "We took a small _____.",
+          "ko": "우리는 작은 배를 탔다.",
+          "answer": "boat"
+        }
+      ]
     },
     "body": {
       "meaning": "몸",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "Exercice is good for the _____.",
+          "ko": "운동은 몸에 좋다.",
+          "answer": "body"
+        },
+        {
+          "en": "My whole _____ is tired.",
+          "ko": "온몸이 피곤하다.",
+          "answer": "body"
+        }
+      ]
     },
     "book": {
       "meaning": "책",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "I like this picture _____.",
+          "ko": "나는 이 그림책이 좋다.",
+          "answer": "book"
+        },
+        {
+          "en": "Open your _____ to page 10.",
+          "ko": "책 10페이지를 펴렴.",
+          "answer": "book"
+        }
+      ]
     },
     "bottle": {
       "meaning": "병",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "A _____ of juice.",
+          "ko": "주스 한 병.",
+          "answer": "bottle"
+        },
+        {
+          "en": "Drink water from the _____.",
+          "ko": "병에서 물을 마시렴.",
+          "answer": "bottle"
+        }
+      ]
     },
     "bowl": {
       "meaning": "그릇",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "A _____ of soup.",
+          "ko": "수프 한 그릇.",
+          "answer": "bowl"
+        },
+        {
+          "en": "Eat cereal in a large _____.",
+          "ko": "큰 그릇에 시리얼을 먹으렴.",
+          "answer": "bowl"
+        }
+      ]
     },
     "box": {
       "meaning": "상자",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "What is in the _____?",
+          "ko": "상자 안에 무엇이 있니?",
+          "answer": "box"
+        },
+        {
+          "en": "Put gifts in the gift _____.",
+          "ko": "선물을 선물 상자에 담아라.",
+          "answer": "box"
+        }
+      ]
     },
     "boy": {
       "meaning": "소년",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "He is a brave _____.",
+          "ko": "그는 용감한 소년이다.",
+          "answer": "boy"
+        },
+        {
+          "en": "The _____ is playing soccer.",
+          "ko": "그 소년은 축구를 하고 있다.",
+          "answer": "boy"
+        }
+      ]
     },
     "bread": {
       "meaning": "빵",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "I want some _____.",
+          "ko": "빵을 좀 먹고 싶다.",
+          "answer": "bread"
+        },
+        {
+          "en": "Butter the _____.",
+          "ko": "빵에 버터를 바르렴.",
+          "answer": "bread"
+        }
+      ]
     },
     "break": {
       "meaning": "깨뜨리다 부수다",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "Don't _____ the glass.",
+          "ko": "유리를 깨뜨리지 마렴.",
+          "answer": "break"
+        },
+        {
+          "en": "Take a short _____.",
+          "ko": "잠시 쉬렴(휴식을 취하렴).",
+          "answer": "break"
+        }
+      ]
     },
     "breakfast": {
       "meaning": "아침식사",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "I eat egg for _____.",
+          "ko": "나는 아침 식사로 달걀을 먹는다.",
+          "answer": "breakfast"
+        },
+        {
+          "en": "Don't skip _____.",
+          "ko": "아침 식사를 거르지 마렴.",
+          "answer": "breakfast"
+        }
+      ]
     },
     "bridge": {
       "meaning": "다리",
-      "chapter": 8
+      "chapter": 8,
+      "sentences": [
+        {
+          "en": "Cross the _____.",
+          "ko": "다리를 건너렴.",
+          "answer": "bridge"
+        },
+        {
+          "en": "High over the _____.",
+          "ko": "다리 저 높이 위로.",
+          "answer": "bridge"
+        }
+      ]
     },
     "bright": {
       "meaning": "밝은",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "The stars are _____.",
+          "ko": "별들이 밝다.",
+          "answer": "bright"
+        },
+        {
+          "en": "A _____ light in the room.",
+          "ko": "방 안의 밝은 빛.",
+          "answer": "bright"
+        }
+      ]
     },
     "bring": {
       "meaning": "가져오다 데려오다",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "_____ me some water.",
+          "ko": "물 좀 가져다줘.",
+          "answer": "bring"
+        },
+        {
+          "en": "Remember to _____ your book.",
+          "ko": "네 책을 가져오는 것을 잊지 마렴.",
+          "answer": "bring"
+        }
+      ]
     },
     "brother": {
       "meaning": "남자형제",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "My _____ is taller than me.",
+          "ko": "내 남자 형제는 나보다 키가 크다.",
+          "answer": "brother"
+        },
+        {
+          "en": "I have one little _____.",
+          "ko": "나는 남동생이 한 명 있다.",
+          "answer": "brother"
+        }
+      ]
     },
     "brown": {
       "meaning": "갈색",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "Bear's fur is _____.",
+          "ko": "곰의 털은 갈색이다.",
+          "answer": "brown"
+        },
+        {
+          "en": "I like my _____ shoes.",
+          "ko": "나는 내 갈색 신발이 마음에 든다.",
+          "answer": "brown"
+        }
+      ]
     },
     "brush": {
       "meaning": "솔 빗",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "_____ your teeth.",
+          "ko": "이를 닦으렴.",
+          "answer": "brush"
+        },
+        {
+          "en": "Use the hair _____.",
+          "ko": "머리 빗을 사용해라.",
+          "answer": "brush"
+        }
+      ]
     },
     "build": {
       "meaning": "건설하다 짓다",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "_____ a sandcastle.",
+          "ko": "모래성을 쌓으렴.",
+          "answer": "build"
+        },
+        {
+          "en": "They _____ new houses.",
+          "ko": "그들은 새 집들을 짓는다.",
+          "answer": "build"
+        }
+      ]
     },
     "burn": {
       "meaning": "불타다",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "Don't _____ the toast.",
+          "ko": "토스트를 태우지 마렴.",
+          "answer": "burn"
+        },
+        {
+          "en": "Wood _____s in the fire.",
+          "ko": "나무가 불 속에서 탄다.",
+          "answer": "burn"
+        }
+      ]
     },
     "bus": {
       "meaning": "버스",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "I go to school by _____.",
+          "ko": "나는 버스를 타고 학교에 간다.",
+          "answer": "bus"
+        },
+        {
+          "en": "The school _____ is yellow.",
+          "ko": "학교 버스는 노란색이다.",
+          "answer": "bus"
+        }
+      ]
     },
     "busy": {
       "meaning": "바쁜",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "I am _____ with homework.",
+          "ko": "나는 숙제 때문에 바쁘다.",
+          "answer": "busy"
+        },
+        {
+          "en": "The street is very _____.",
+          "ko": "길이 매우 붐빈다.",
+          "answer": "busy"
+        }
+      ]
     },
     "but": {
       "meaning": "그러나",
-      "chapter": 9
+      "chapter": 9,
+      "sentences": [
+        {
+          "en": "I am small _____ strong.",
+          "ko": "나는 작지만 힘이 세다.",
+          "answer": "but"
+        },
+        {
+          "en": "I like apples _____ not pears.",
+          "ko": "나는 사과는 좋아하지만 배는 좋아하지 않는다.",
+          "answer": "but"
+        }
+      ]
     },
     "butter": {
       "meaning": "버터",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "I like _____ on bread.",
+          "ko": "나는 빵에 버터 바른 것을 좋아한다.",
+          "answer": "butter"
+        },
+        {
+          "en": "Milk makes _____.",
+          "ko": "우유로 버터를 만든다.",
+          "answer": "butter"
+        }
+      ]
     },
     "button": {
       "meaning": "단추 버튼",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "Push the red _____.",
+          "ko": "빨간 버튼을 누르렴.",
+          "answer": "button"
+        },
+        {
+          "en": "One _____ is missing.",
+          "ko": "단추 하나가 없어졌다.",
+          "answer": "button"
+        }
+      ]
     },
     "buy": {
       "meaning": "사다",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "I want to _____ a toy car.",
+          "ko": "나는 장난감 자동차를 사고 싶다.",
+          "answer": "buy"
+        },
+        {
+          "en": "Where did you _____ it?",
+          "ko": "그것을 어디에서 샀니?",
+          "answer": "buy"
+        }
+      ]
     },
     "by": {
       "meaning": "~에 의하여 ~옆에",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "Sit _____ the window.",
+          "ko": "창가 옆에 앉으렴.",
+          "answer": "by"
+        },
+        {
+          "en": "Go home _____ bus.",
+          "ko": "버스를 타고 집에 가라.",
+          "answer": "by"
+        }
+      ]
     },
     "bye": {
       "meaning": "안녕",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "Say _____ to your friend.",
+          "ko": "친구에게 안녕이라고 말하렴.",
+          "answer": "bye"
+        },
+        {
+          "en": "Good-_____, see you soon.",
+          "ko": "안녕, 곧 다시 보자.",
+          "answer": "bye"
+        }
+      ]
     },
     "calendar": {
       "meaning": "달력",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "Look at the _____.",
+          "ko": "달력을 보렴.",
+          "answer": "calendar"
+        },
+        {
+          "en": "Check the date on the _____.",
+          "ko": "달력에서 날짜를 확인해 봐.",
+          "answer": "calendar"
+        }
+      ]
     },
     "cake": {
       "meaning": "케이크",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "I want a chocolate _____.",
+          "ko": "나는 초콜릿 케이크를 원한다.",
+          "answer": "cake"
+        },
+        {
+          "en": "Blow the candles on the _____.",
+          "ko": "케이크 위의 촛불을 꺼라.",
+          "answer": "cake"
+        }
+      ]
     },
     "call": {
       "meaning": "부르다 전화하다",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "_____ your mother.",
+          "ko": "엄마를 부르렴(또는 엄마에게 전화하렴).",
+          "answer": "call"
+        },
+        {
+          "en": "What do you _____ this?",
+          "ko": "이것을 뭐라고 부르니?",
+          "answer": "call"
+        }
+      ]
     },
     "camera": {
       "meaning": "카메라",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "Smile for the _____.",
+          "ko": "카메라를 보고 웃으렴.",
+          "answer": "camera"
+        },
+        {
+          "en": "Take a photo with my _____.",
+          "ko": "내 카메라로 사진을 찍어라.",
+          "answer": "camera"
+        }
+      ]
     },
     "camp": {
       "meaning": "야영지 야영하다",
-      "chapter": 10
+      "chapter": 10,
+      "sentences": [
+        {
+          "en": "We go to summer _____.",
+          "ko": "우리는 여름 캠프에 간다.",
+          "answer": "camp"
+        },
+        {
+          "en": "Make a fire at the _____.",
+          "ko": "캠프장에서 불을 피워라.",
+          "answer": "camp"
+        }
+      ]
     }
   }
 }
