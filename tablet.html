@@ -420,6 +420,8 @@
                 <button class="key" data-key="b">b</button>
                 <button class="key" data-key="n">n</button>
                 <button class="key" data-key="m">m</button>
+                <button class="key" data-key=",">,</button>
+                <button class="key" data-key="'">'</button>
                 <button class="key special" data-key="Backspace">⌫</button>
             </div>
             <div class="kb-row">
@@ -464,6 +466,7 @@
                 <button class="key" data-key="ㅠ">ㅠ</button>
                 <button class="key" data-key="ㅜ">ㅜ</button>
                 <button class="key" data-key="ㅡ">ㅡ</button>
+                <button class="key" data-key=",">,</button>
                 <button class="key special" data-key="Backspace">⌫</button>
             </div>
             <div class="kb-row">
@@ -914,8 +917,25 @@
         /* Virtual Keyboard Input Handler */
         const shiftMap = {
             'ㄱ': 'ㄲ', 'ㄷ': 'ㄸ', 'ㅂ': 'ㅃ', 'ㅅ': 'ㅆ', 'ㅈ': 'ㅉ',
-            'q': 'Q', 'w': 'W', 'e': 'E', 'r': 'R', 't': 'T', 'o': 'O', 'p': 'P' // mapping back to Hangul alphabet if needed
+            'ㅐ': 'ㅒ', 'ㅔ': 'ㅖ',
+            'q': 'Q', 'w': 'W', 'e': 'E', 'r': 'R', 't': 'T', 'o': 'O', 'p': 'P' 
         };
+
+        function updateKeyboardLabels() {
+            const isShift = state.isShiftActive;
+            const koKeys = document.querySelectorAll('#kb-ko .key');
+            koKeys.forEach(btn => {
+                const key = btn.getAttribute('data-key');
+                if (shiftMap[key]) {
+                    btn.innerText = isShift ? shiftMap[key] : key;
+                }
+            });
+            // Also update Shift button style for consistency
+            document.querySelectorAll('.key[data-key="Shift"]').forEach(btn => {
+                btn.style.background = isShift ? 'var(--primary)' : '';
+                btn.style.color = isShift ? 'white' : '';
+            });
+        }
 
         function handleKey(btn) {
             btn.classList.add('pressed');
@@ -927,8 +947,7 @@
 
             if (key === 'Shift') {
                 state.isShiftActive = !state.isShiftActive;
-                btn.style.background = state.isShiftActive ? 'var(--primary)' : '';
-                btn.style.color = state.isShiftActive ? 'white' : '';
+                updateKeyboardLabels();
                 return;
             }
 
@@ -940,8 +959,7 @@
                     if (state.typingStage === 'ko') key = shiftMap[key];
                     // Turn off shift
                     state.isShiftActive = false;
-                    const shiftBtn = document.getElementById('ko-shift');
-                    if (shiftBtn) { shiftBtn.style.background = ''; shiftBtn.style.color = ''; }
+                    updateKeyboardLabels();
                 }
 
                 if (state.typingStage === 'ko') {
@@ -991,16 +1009,21 @@
                     els.fakeInput.classList.add('correct-flash');
                     setTimeout(() => els.fakeInput.classList.remove('correct-flash'), 200);
 
-                    if (state.typingStage === 'recall') speak(state.currentWord.word);
+                    if (state.typingStage === 'recall') {
+                        speak(state.currentWord.word);
+                    } else if (state.typingStage === 'sentence') {
+                        const fullSentence = state.currentSentence.en.replace('_____', state.currentSentence.answer);
+                        speak(fullSentence);
+                    }
                     RetroAudio.play('correct');
 
-                    state.isPlaying = false; // pause slightly
+                    const delay = (state.typingStage === 'sentence') ? 2000 : 800;
                     setTimeout(() => {
                         state.isPlaying = true;
                         state.rawInput = "";
                         els.fakeInput.innerText = '';
                         nextWord();
-                    }, 800);
+                    }, delay);
                 }
             } else if (typed.length > 0) {
                 // Basic error checking
