@@ -497,6 +497,9 @@
             style="background: var(--text-dim); box-shadow: none; margin-top: 0;">MENU</button>
     </div>
 
+    <!-- 로컬 파일 보안정책(CORS) 우회를 위해 단어 데이터를 JS 파일로 직접 로드합니다 -->
+    <script src="words02.js"></script>
+
     <script>
         // --- Hangul Automata Engine ---
         const Hangul = {
@@ -584,7 +587,9 @@
                 "island": { "meaning": "섬", "chapter": 3 }
             }
         };
-        let WORD_DATABASE = EMBEDDED_WORD_DATA["시트1"];
+        
+        // words02.js가 성공적으로 로드되었다면 해당 데이터를 사용하고, 아니면 기본 예시 데이터를 사용합니다.
+        let WORD_DATABASE = typeof WORDS02_DATA !== 'undefined' ? WORDS02_DATA["시트1"] : EMBEDDED_WORD_DATA["시트1"];
 
         const RetroAudio = {
             ctx: null, masterVolume: 0.5,
