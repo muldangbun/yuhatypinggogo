@@ -46,9 +46,7 @@
             color: var(--text-main);
             font-family: 'Jua', 'Outfit', sans-serif !important;
             height: 100vh;
-            /* iOS Safari bottom bar fix */
-            /* height: 100dvh; */
-            height: -webkit-fill-available;
+            height: 100dvh; /* Dynamic Viewport Height for mobile browsers */
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -143,8 +141,19 @@
             color: var(--primary);
             font-weight: 800;
             min-height: 2.2rem;
+            max-height: 2.5rem; /* Prevent height from expanding */
             margin-bottom: 20px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            word-break: keep-all; /* Prevent awkward word breaks */
+        }
+
+        #meaning-display.long-text {
+            font-size: 1.3rem;
+            line-height: 1.1;
         }
 
         .fake-input {
@@ -799,9 +808,24 @@
             state.combo = 0; els.combo.classList.remove('active');
 
             els.wordDisplay.innerHTML = `<span class="error">${state.currentWord.word}</span>`;
-            els.meaningDisplay.innerHTML = `<span style="color: var(--primary);">Try again!</span>`;
+            updateMeaningDisplay("Try again!", true);
             state.stageWords.unshift(state.currentWord);
             setTimeout(nextWord, 1200);
+        }
+
+        function updateMeaningDisplay(text, isStatus = false) {
+            els.meaningDisplay.innerText = text;
+            if (isStatus) {
+                els.meaningDisplay.style.color = "var(--primary)";
+                els.meaningDisplay.classList.remove('long-text');
+            } else {
+                els.meaningDisplay.style.color = ""; // Reset to CSS default
+                if (text.length > 8) {
+                    els.meaningDisplay.classList.add('long-text');
+                } else {
+                    els.meaningDisplay.classList.remove('long-text');
+                }
+            }
         }
 
         function handleStageClear() {
@@ -848,10 +872,10 @@
             let word;
             if (!isRecall) {
                 word = state.typingStage === 'en' ? state.currentWord.word : state.currentWord.meaning;
-                if (state.typingStage === 'ko') els.meaningDisplay.innerText = "";
-                else els.meaningDisplay.innerText = state.currentWord.meaning;
+                if (state.typingStage === 'ko') updateMeaningDisplay("");
+                else updateMeaningDisplay(state.currentWord.meaning);
             } else {
-                els.meaningDisplay.innerText = state.currentWord.meaning;
+                updateMeaningDisplay(state.currentWord.meaning);
                 word = state.currentWord.word;
             }
 
@@ -880,7 +904,7 @@
             const answer = state.currentSentence.answer;
             const typed = els.fakeInput.innerText;
 
-            els.meaningDisplay.innerText = state.currentSentence.ko;
+            updateMeaningDisplay(state.currentSentence.ko);
 
             let parts = sentence.split('_____');
             let html = `<span style="font-size: 1.5rem; color: var(--text-dim);">${parts[0]}</span>`;
