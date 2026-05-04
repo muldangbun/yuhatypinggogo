@@ -364,11 +364,29 @@
             .header { padding: 8px 15px; }
             .logo { font-size: 1.1rem; }
             .stat-item { padding: 3px 8px; }
-            #word-display { font-size: 2.5rem; min-height: 60px; margin-bottom: 5px; }
-            #meaning-display { font-size: 1.4rem; margin-bottom: 10px; }
+            #word-display { font-size: 2.2rem; min-height: 55px; margin-bottom: 4px; }
+            #meaning-display { font-size: 1.3rem; margin-bottom: 8px; }
             .game-area { padding: 10px; }
             .key { height: 48px; font-size: 1.2rem; }
             .kb-row { margin-bottom: 5px; }
+            .fake-input { height: 45px; font-size: 1.3rem; }
+        }
+
+        /* Ultra-small screens like iPhone SE 1st Gen (Height 568px) */
+        @media (max-height: 600px) {
+            .header { padding: 5px 15px; }
+            .logo { font-size: 1.0rem; }
+            .stat-item { padding: 2px 6px; }
+            .stat-label { font-size: 0.5rem; }
+            .stat-value { font-size: 0.9rem; }
+            .game-area { padding: 5px 10px; }
+            #word-display { font-size: 1.8rem; min-height: 40px; margin-bottom: 2px; }
+            #meaning-display { font-size: 1.1rem; margin-bottom: 5px; min-height: 1.5rem; }
+            .fake-input { height: 38px; font-size: 1.1rem; border-radius: 12px; }
+            .key { height: 42px; font-size: 1.1rem; border-radius: 6px; }
+            .kb-row { margin-bottom: 3px; }
+            .keyboard-area { padding: 5px; padding-bottom: max(15px, env(safe-area-inset-bottom)); }
+            .combo-counter { font-size: 1.5rem; top: 5px; right: 10px; }
         }
     </style>
 </head>
