@@ -341,6 +341,17 @@
             box-shadow: var(--key-active-shadow);
         }
 
+        .key.symbol {
+            background: #1e293b;
+            color: var(--text-dim);
+            font-size: 1.2rem;
+        }
+
+        .key.symbol:active,
+        .key.symbol.pressed {
+            background: #334155;
+        }
+
         .keyboard-container {
             display: none;
         }
@@ -456,8 +467,8 @@
                 <button class="key" data-key="b">b</button>
                 <button class="key" data-key="n">n</button>
                 <button class="key" data-key="m">m</button>
-                <button class="key" data-key=",">,</button>
-                <button class="key" data-key="'">'</button>
+                <button class="key symbol" data-key=",">,</button>
+                <button class="key symbol" data-key="'">'</button>
                 <button class="key special" data-key="Backspace">⌫</button>
             </div>
             <div class="kb-row">
@@ -491,12 +502,12 @@
                 <button class="key" data-key="ㅓ">ㅓ</button>
                 <button class="key" data-key="ㅏ">ㅏ</button>
                 <button class="key" data-key="ㅣ">ㅣ</button>
-                <button class="key" data-key="(">(</button>
-                <button class="key" data-key=")">)</button>
+                <button class="key symbol" data-key="(">(</button>
+                <button class="key symbol" data-key=")">)</button>
             </div>
             <div class="kb-row">
                 <button class="key special" data-key="Shift" id="ko-shift">⬆</button>
-                <button class="key" data-key="~">~</button>
+                <button class="key symbol" data-key="~">~</button>
                 <button class="key" data-key="ㅋ">ㅋ</button>
                 <button class="key" data-key="ㅌ">ㅌ</button>
                 <button class="key" data-key="ㅊ">ㅊ</button>
@@ -504,7 +515,7 @@
                 <button class="key" data-key="ㅠ">ㅠ</button>
                 <button class="key" data-key="ㅜ">ㅜ</button>
                 <button class="key" data-key="ㅡ">ㅡ</button>
-                <button class="key" data-key=",">,</button>
+                <button class="key symbol" data-key=",">,</button>
                 <button class="key special" data-key="Backspace">⌫</button>
             </div>
             <div class="kb-row">
